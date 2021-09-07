@@ -16,7 +16,7 @@ Orders.init(
       type: S.STRING,
     },
   },
-  { sequelize: DB, modelName: "orders" }
+  { sequelize, modelName: "orders" }
 );
 
 module.exports = Orders;

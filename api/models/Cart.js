@@ -16,7 +16,7 @@ Cart.init(
       type: S.INTEGER,
     },
   },
-  { sequelize: DB, modelName: "cart" }
+  { sequelize, modelName: "cart" }
 );
 
 module.exports = Cart;
