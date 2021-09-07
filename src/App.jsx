@@ -1,10 +1,17 @@
 import React from "react";
+import { Route, Router, Switch, Redirect } from "react-router-dom";
+import ListOfProducts from "./components/ListOfProducts";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
-    <div >
-      <h1>e-commerce</h1>
-    </div>
+    <>
+      <Navbar />
+      <Switch>
+        <Route exact path="/home" component={ListOfProducts} />
+        <Redirect from="/" to="/home" />
+      </Switch>
+    </>
   );
 }
 
