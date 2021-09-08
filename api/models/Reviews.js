@@ -3,10 +3,7 @@ const sequelize = require('../db')
 
 class Reviews extends S.Model{}
 Reviews.init({
-    username: {
-        type: S.STRING
-    },
-    videogame: {
+    videogameName: {
         type: S.STRING
     },
     text: {

@@ -22,8 +22,8 @@ Reviews.belongsTo(VideoGames)
 
 // ASOC VGAME - CATEGORIES
 // Tabla intermedia
-VideoGames.belongsToMany(Categories)
-Categories.belongsToMany(VideoGames)
+VideoGames.belongsToMany(Categories, { through: 'categories-videogame' })
+Categories.belongsToMany(VideoGames, { through: 'categories-videogame' })
 
 // ASOC CART - ORDERS
 // Order con id de Cart

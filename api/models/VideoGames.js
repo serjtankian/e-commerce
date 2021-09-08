@@ -1,3 +1,4 @@
+const { STRING } = require("sequelize");
 const S = require("sequelize");
 const sequelize = require("../db");
 
@@ -7,13 +8,27 @@ VideoGames.init(
     name: {
       type: S.STRING,
     },
-    // apiID: {
-    //   type: S.INTEGER,
-    //   primaryKey: true
-    // },
-    price: {
-      type: S.INTEGER,
+    released: {
+      type: S.STRING
     },
+    image: {
+      type: S.STRING
+    },
+    rating: {
+      type: S.FLOAT
+    },
+    platforms: {
+      type: S.ARRAY(STRING)
+    },
+    price: {
+      type: S.FLOAT,
+    },
+    description: {
+      type: S.TEXT
+    },
+    stock: {
+      type: S.INTEGER,
+    }
   },
   { sequelize, modelName: "videogames" }
 );

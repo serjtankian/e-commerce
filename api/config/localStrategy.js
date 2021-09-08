@@ -11,15 +11,11 @@ passport.use(
     function (email, password, done) {
       User.findOne({ where: { email } })
         .then((user) => {
-          if (!user) {
-            return done("Incorrect email", false);
-          }
-
-          if (user.validPassword(password)) {
-            return done("Incorrect password", false);
-          }
-
-          return done(null, user);
+          if (!user) return done("Incorrect email", false);
+          user.hashPw(password, user.salt).then((pwHashed) => {
+            if (pwHashed !== user.password) return done('Incorrect password', false);
+            else return done(null, user)
+          });
         })
         .catch(done);
     }

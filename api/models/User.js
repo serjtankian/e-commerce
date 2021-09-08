@@ -5,14 +5,14 @@ const { hash, genSalt, compareSync } = require("bcrypt");
 class User extends S.Model {}
 User.init(
   {
-    username: {
+    name: {
       type: S.STRING,
       allowNull: false,
-      unique: true,
     },
     email: {
       type: S.STRING,
       allowNull: false,
+      unique: true,
       validate: {
         isEmail: true,
       },
@@ -33,10 +33,20 @@ User.prototype.hashPw = function (pw, salt) {
 };
 
 User.prototype.validPassword = function (password) {
+
   return compareSync(password, this.password);
 };
 
 User.beforeCreate((user) => {
+  return genSalt(16)
+    .then((salt) => {
+      user.salt = salt;
+      return user.hashPw(user.password, salt);
+    })
+    .then((hash) => (user.password = hash));
+});
+
+User.afterUpdate((user) => {
   return genSalt(16)
     .then((salt) => {
       user.salt = salt;
