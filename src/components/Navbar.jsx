@@ -11,7 +11,7 @@ export default function Naxvbar() {
           <Navbar.Brand href="#home">Steam Green</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link ><Link className="text-white text-decoration-none" to="/">Home</Link></Nav.Link>
-            <Nav.Link >Login</Nav.Link>
+            <Nav.Link ><Link className="text-white text-decoration-none" to="/login">Login</Link></Nav.Link>
             <Nav.Link >🛒</Nav.Link>
           </Nav>
         </Container>

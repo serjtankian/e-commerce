@@ -3,12 +3,15 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Route } from "react-router-dom";
 import "./index.css";
 import App from "./App.jsx";
-
+import { Provider } from "react-redux";
+import store from "./store/store";
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Route path="/" component={App} />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Route path="/" component={App} />
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
