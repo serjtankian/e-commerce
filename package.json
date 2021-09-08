@@ -33,7 +33,8 @@
     "start": "concurrently 'npm run server' 'npm run client'",
     "build": "react-scripts build",
     "client": "react-scripts start",
-    "server": "nodemon api/server.js"
+    "server": "nodemon api/server.js",
+    "seed": "node api/seed"
   },
   "eslintConfig": {
     "extends": [

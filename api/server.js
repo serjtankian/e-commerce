@@ -3,7 +3,9 @@ const app = express();
 const session = require("express-session");
 const passport = require("passport");
 const serverConfig = require("./config/serverConfig.json");
-const db = require('./db')
+const db = require("./db");
+const routes = require("./routes/index");
+const { User, VideoGames, Reviews, Orders, Categories, Cart } = require('./models/index')
 
 app.use(express.json());
 
@@ -23,15 +25,17 @@ require("./config/localStrategy");
 app.use(passport.initialize());
 app.use(passport.session());
 
+//Routes
+app.use("/api", routes);
+
 // err middleware
 app.use(function (err, res) {
   res.sendStatus(500);
 });
 
 //app listen
-db.sync().then(()=> {
+db.sync({force: false}).then(() => {
   app.listen(serverConfig.port, () => {
     console.log("Serven listening on port " + serverConfig.port);
   });
-  
-})
+});
