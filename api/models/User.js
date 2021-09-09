@@ -2,7 +2,16 @@ const S = require("sequelize");
 const sequelize = require("../db");
 const { hash, genSalt, compareSync } = require("bcrypt");
 
-class User extends S.Model {}
+class User extends S.Model {
+  //Excluye al usuario que hace la busqueda
+  static allExceptsMe(userId) {
+    return User.findAll({
+      where: {
+        [S.Op.not]: [{ id: userId }],
+      },
+    });
+  }
+}
 User.init(
   {
     name: {
@@ -24,6 +33,9 @@ User.init(
     salt: {
       type: S.STRING,
     },
+    isAdmin: {
+      type: S.STRING
+    }
   },
   { sequelize, modelName: "user" }
 );
@@ -46,13 +58,5 @@ User.beforeCreate((user) => {
     .then((hash) => (user.password = hash));
 });
 
-User.afterUpdate((user) => {
-  return genSalt(16)
-    .then((salt) => {
-      user.salt = salt;
-      return user.hashPw(user.password, salt);
-    })
-    .then((hash) => (user.password = hash));
-});
 
 module.exports = User;
