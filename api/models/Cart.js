@@ -6,17 +6,23 @@ class Cart extends S.Model {}
 
 Cart.init(
   {
-    videoGames: {
-      type: S.ARRAY(STRING),
-    },
-    cuanty: {
+    quantity: {
       type: S.INTEGER,
+      defaultValue: 0,
+      set: function (value) {
+            let quantity = this.getDataValue("quantity") + value
+            this.setDataValue("quantity", quantity);
+          },
     },
     price: {
       type: S.INTEGER,
     },
+    status:{
+      type: S.ENUM('open','close'),
+    },
   },
   { sequelize, modelName: "cart" }
 );
+
 
 module.exports = Cart;

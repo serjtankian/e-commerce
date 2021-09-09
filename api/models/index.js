@@ -10,6 +10,12 @@ const Cart = require('./Cart')
 User.hasMany(Cart)
 Cart.belongsTo(User)
 
+// ASOC VIDEOG-CART
+// VideoGames tiene fk de cart
+Cart.hasMany(VideoGames)
+VideoGames.belongsTo(Cart)
+
+
 // ASOC USER-REVIEWS
 // Reviews tiene fk de user
 User.hasMany(Reviews)
