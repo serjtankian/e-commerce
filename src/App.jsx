@@ -7,6 +7,7 @@ import ProductDetail from './components/ProductDetail';
 import LoginContainer from './containers/LoginContainer';
 import RegisterContainer from './containers/RegisterContainer';
 import 'antd/dist/antd.css';
+import Cart from './components/Cart';
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
         <Route exact path="/login" component={LoginContainer} />
         <Route exact path="/register" component={RegisterContainer} />
         <Route path="/products/:id/" component={ProductDetail} />
+        <Route exact path="/cart" component={Cart} />
+
         <Redirect from="/" to="/home" />
       </Switch>
       <Footer />
