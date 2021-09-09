@@ -1,11 +1,12 @@
-import React from "react";
-import { Route, Router, Switch, Redirect } from "react-router-dom";
-import Footer from "./components/Footer";
-import ListOfProducts from "./components/ListOfProducts";
-import Navbar from "./components/Navbar";
-import ProductDetail from "./components/ProductDetail";
-import LoginContainer from "./containers/LoginContainer";
-import RegisterContainer from "./containers/RegisterContainer";
+import React from 'react';
+import { Route, Router, Switch, Redirect } from 'react-router-dom';
+import Footer from './components/Footer';
+import ListOfProducts from './components/ListOfProducts';
+import Navbar from './components/Navbar';
+import ProductDetail from './components/ProductDetail';
+import LoginContainer from './containers/LoginContainer';
+import RegisterContainer from './containers/RegisterContainer';
+import 'antd/dist/antd.css';
 
 function App() {
   return (
