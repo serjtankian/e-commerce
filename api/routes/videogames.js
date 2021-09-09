@@ -86,10 +86,5 @@ router.delete("/remove/:id", (req, res, next) => {
   }).then(() => res.status(204).end());
 });
 
-// router.delete("/delete/:id", (req, res, next) => {
-//     Favorites.destroy({ where: { id: req.params.id } })
-//       .then(() => res.sendStatus(204).end())
-//       .catch(next);
-//   });
 
 module.exports = router;
