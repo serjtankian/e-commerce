@@ -46,11 +46,11 @@ router.put("/:email", (req, res) => {
 
 
 // Ruta que devuelva el usuario loggeado en caso de que haya
-router.get("/auth/me", (req, res) => {
-  User.findByPk(req.user.id)
-    .then((user) => res.send(user))
-    .catch(() => res.sendStatus(404));
-});
+// router.get("/auth/me", (req, res) => {
+//   User.findByPk(req.user.id)
+//     .then((user) => res.send(user))
+//     .catch(() => res.sendStatus(404));
+// });
 
 // Ruta para promover administradores (admin)
 router.put("/promove/:id", isSAdmin, (req, res, next) =>{
