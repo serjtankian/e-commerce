@@ -16,22 +16,23 @@ function Login() {
   const onLogin = async (e) => {
     e.preventDefault();
     // console.log('VALORES -> ', e);
-    log('login attempt...');
+    // log('login attempt...');
     // try {
-    await dispatch(loginUser(loginForm))
-      .then((response) => {
-        history.push('/');
-      })
-      .catch((response) => {
-        // history.push('/login');
-        // something's not right...
-        // error(response.status, response.statusText);
-      });
-
-    // }
+    await dispatch(loginUser(loginForm));
+    // .then((response) => {
+    console.log('LOGIN USER DISPATCH --> ', user.loggedIn);
+    user.loggedIn ? history.push('/') : history.push('/login');
+    // })
+    // .catch((response) => {
+    // console.log('ERROR LOGIN DISPATCH --> ', response);
+    // history.push('/login');
+    // something's not right...
+    // error(response.status, response.statusText);
   };
 
+  // }
   const onChangeLogin = (e) => {
+    console.log('onChangeLogin e= ', e);
     const { name, value } = e.target;
     setLoginForm({ ...loginForm, [name]: value });
     // console.log('VALORES -> ', name, value);
