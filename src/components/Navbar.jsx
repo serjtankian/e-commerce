@@ -53,7 +53,7 @@ export default function Naxvbar() {
             <Nav.Link>
               <Link
                 className="btn btn-outline-primary text-white text-decoration-none"
-                to="/cart"
+                to={user ? "/cart" : "/login"}
               >
                 🛒
               </Link>

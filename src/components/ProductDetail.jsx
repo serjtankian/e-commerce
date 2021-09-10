@@ -2,13 +2,17 @@ import React, { useEffect } from 'react';
 import { Card, Container, Button, Col, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSingleGame } from '../store/gamesReducer';
-import { useLocation } from 'react-router';
+import { useHistory, useLocation } from 'react-router';
 import { addProductToCart } from '../store/cartReducer';
+
+
+import { message } from 'antd'
 
 function ProductDetail() {
   const game = useSelector((state) => state.games.singleGame);
-  const userId = useSelector((state) => state.users.loggedIn.id);
-
+  const user = useSelector((state) => state.users.loggedIn)
+  const userId = user ? user.id : null;
+  let history = useHistory();
   const dispatch = useDispatch();
 
   // const [value, setValue] = React.useState('');
@@ -26,8 +30,13 @@ function ProductDetail() {
 
   const addGameToCart = (e) => {
     e.preventDefault();
-    dispatch(addProductToCart({ gameId, userId }));
-    // Si se registro con exito, se envia a la pagina de Login para que ingrese.
+    if (!user) {
+      history.push('/login')
+      message.warning("You need to be logged in!")
+    } else {
+
+      dispatch(addProductToCart({ gameId, userId }));
+    }
   };
 
   return (
