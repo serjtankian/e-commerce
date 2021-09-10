@@ -1,4 +1,4 @@
-const { VideoGames, Categories } = require("./models/index");
+const { VideoGames, Categories, User } = require("./models/index");
 
 let games = [
   {
@@ -348,3 +348,6 @@ games.forEach(async (game) => {
     })
     .catch((e) => console.log(e));
 });
+
+
+User.create({name: "Pepe Perez", email:"pepe@gmail.com", password: "1234", isAdmin: "SAdmin"})

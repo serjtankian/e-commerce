@@ -4,6 +4,7 @@ const Reviews = require('./Reviews')
 const Orders = require('./Orders')
 const Categories = require('./Categories')
 const Cart = require('./Cart')
+const CartVideoGames = require("./Cart-VideoGames")
 
 // ASOC USER-CART
 // Cart tiene fk de user
@@ -11,9 +12,9 @@ User.hasMany(Cart)
 Cart.belongsTo(User)
 
 // ASOC VIDEOG-CART
-// VideoGames tiene fk de cart
-Cart.hasMany(VideoGames)
-VideoGames.belongsTo(Cart)
+// Tabla Intermedia
+VideoGames.belongsToMany(Cart, { through: 'cart-videogames' })
+Cart.belongsToMany(VideoGames, { through: 'cart-videogames' })
 
 
 // ASOC USER-REVIEWS
@@ -36,4 +37,4 @@ Categories.belongsToMany(VideoGames, { through: 'categories-videogame' })
 Cart.hasOne(Orders)
 Orders.belongsTo(Cart)
 
-module.exports = { User, VideoGames, Reviews, Orders, Categories, Cart }
+module.exports = { User, VideoGames, Reviews, Orders, Categories, Cart, CartVideoGames}
