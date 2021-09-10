@@ -3,22 +3,32 @@ import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import { loginUser, logoutUser } from '../store/usersReducer';
 import { useDispatch, useSelector } from 'react-redux';
+import { log, success, error } from '../utils/logs';
 
 function Login() {
   const [loginForm, setLoginForm] = useState({ email: '', password: '' });
-  const showLogin = '/login' === useLocation().pathname;
+  // const showLogin = '/login' === useLocation().pathname;
 
   const dispatch = useDispatch();
   let history = useHistory();
-  const users = useSelector((state) => state.users);
+  const user = useSelector((state) => state.users);
 
   const onLogin = async (e) => {
     e.preventDefault();
-    console.log('VALORES -> ', e);
-    await dispatch(loginUser(loginForm));
-    // await dispatch(createCartOrRecover())
+    // console.log('VALORES -> ', e);
+    log('login attempt...');
+    // try {
+    await dispatch(loginUser(loginForm))
+      .then((response) => {
+        history.push('/');
+      })
+      .catch((response) => {
+        // history.push('/login');
+        // something's not right...
+        // error(response.status, response.statusText);
+      });
 
-    history.push('/');
+    // }
   };
 
   const onChangeLogin = (e) => {

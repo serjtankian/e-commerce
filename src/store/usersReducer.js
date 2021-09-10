@@ -60,7 +60,7 @@ const usersReducer = createReducer(initialState, {
     return state;
   },
   [registerUser.pending]: (state, action) => {
-    message.loading('Estamos creando tu usuario, danos unos segundos...', 3);
+    message.loading('Estamos creando tu usuario, danos unos segundos...', 1);
   },
   [registerUser.reject]: (state, action) => {
     message.error('Hubo un error, no pudimos crear tu usuario', 3);
@@ -74,14 +74,16 @@ const usersReducer = createReducer(initialState, {
   [loginUser.pending]: (state, action) => {
     message.loading(
       'Estamos buscando tu usuario en la base de datos. Danos unos segundos...',
-      3
+      1
     );
+    return state;
   },
   [loginUser.rejected]: (state, action) => {
     message.error(
       'Tus datos son incorrectos. Por favor, revisa tu usuario y password',
       3
     );
+    return state;
   },
   [loggedUser.fulfilled]: (state, action) => {
     state = { ...action.payload.user, loggedIn: true };

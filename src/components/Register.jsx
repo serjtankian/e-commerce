@@ -16,39 +16,15 @@ function Register() {
 
   const onRegister = (e) => {
     e.preventDefault();
-      dispatch(registerUser(registerForm));
-      history.push('/login');
+    dispatch(registerUser(registerForm));
+    // Si se registro con exito, se envia a la pagina de Login para que ingrese.
+    history.push('/login');
   };
 
   const onChangeRegister = (e) => {
     const { name, value } = e.target;
     setRegisterForm({ ...registerForm, [name]: value });
   };
-
-//   const validateEmail = () => validator.isEmail(registerForm.email);
-//   const validateName = () => validator.isAlpha(registerForm.name);
-//   const validatePassword = () =>
-//     validator.isLength(registerForm.password, 3, 9);
-//   const validate = () => {
-//     let isValid = true;
-
-//     if (!validateEmail()) {
-//       alert.show('INVALID EMAIL');
-//       isValid = false;
-//     }
-
-//     if (!validateName()) {
-//       alert.show('INVALID NAME');
-//       isValid = false;
-//     }
-
-//     if (!validatePassword()) {
-//       alert.show('INVALID PASSWORD');
-//       isValid = false;
-//     }
-
-//     return isValid;
-//   };
 
   return (
     <Container className="mr-3 margin-top">
