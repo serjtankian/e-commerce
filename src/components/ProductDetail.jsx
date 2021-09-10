@@ -26,16 +26,12 @@ function ProductDetail() {
   return (
     <Container className="mt-3 mb-3">
       <Row className="mt-3 mb-3">
-        <Col></Col>
         <Col>
           <h1 className="text-center ">{game.name}</h1>
         </Col>
-
-        <Col></Col>
       </Row>
       <Row className="align-items-center">
-        <Col></Col>
-        <Col xs={8}>
+        <Col>
           <Card className="" style={{ width: '38rem' }}>
             <Card.Img variant="top" src={game.image} />
             <Card.Body>
@@ -60,7 +56,6 @@ function ProductDetail() {
             </Card.Body>
           </Card>
         </Col>
-        <Col></Col>
       </Row>
     </Container>
   );

@@ -44,7 +44,7 @@ export default function ListOfProducts() {
       <h1 className="text-center mt-3 mb-3">List of products</h1>
       <Container>
         <Row>
-          <Col>
+          <Col className="mt-1 mb-1">
             <Form>
               <InputGroup>
                 <FormControl
@@ -62,14 +62,14 @@ export default function ListOfProducts() {
             </Form>
           </Col>
 
-          <Col md="auto">
+          <Col md="auto mt-1 mb-1">
             <DropdownButton id="dropdown-basic-button" title="Categories">
               <Dropdown.Item>Category</Dropdown.Item>
               <Dropdown.Item>Category-1</Dropdown.Item>
               <Dropdown.Item>Category-2</Dropdown.Item>
             </DropdownButton>
           </Col>
-          <Col xs lg="2">
+          <Col md="auto mt-1 mb-1">
             <DropdownButton id="dropdown-basic-button" title="Rating Store">
               <Dropdown.Item>Best - Worst</Dropdown.Item>
               <Dropdown.Item>Worst - Best</Dropdown.Item>
@@ -80,33 +80,36 @@ export default function ListOfProducts() {
 
       <Container className="mt-3 mb-3">
         <CardGroup>
-          <Row xs={1} md={4} className="g-4">
+          <Row xs={1} md={3} className="g-4">
             {/* --------------MAP------------ */}
             {games &&
               games.map((game, i) => {
                 return (
                   <Col key={i}>
-                    <Card>
-                      <Card.Img
-                        variant="top"
-                        width={300}
-                        height={160}
-                        src={game.image}
-                      />
-                      <Card.Body>
-                        <Card.Title>{game.name}</Card.Title>
-                        <Card.Text>Released: {game.released}</Card.Text>
-                        <Card.Text>Rating: {game.rating}</Card.Text>
-                        <Card.Text>Price: ${game.price}</Card.Text>
-                      </Card.Body>
-                      <Card.Footer>
-                        <small className="text-muted">
-                          <Link to={`/products/${game.id}`}>
+                    <Link
+                      to={`/products/${game.id}`}
+                      className="text-decoration-none text-black"
+                    >
+                      <Card className="h-100">
+                        <Card.Img
+                          variant="top"
+                          width={300}
+                          height={160}
+                          src={game.image}
+                        />
+                        <Card.Body>
+                          <Card.Title>{game.name}</Card.Title>
+                          <Card.Text>Released: {game.released}</Card.Text>
+                          <Card.Text>Rating: {game.rating}</Card.Text>
+                          <Card.Text>Price: ${game.price}</Card.Text>
+                        </Card.Body>
+                        <Card.Footer>
+                          <small className="text-muted">
                             <Button as="input" type="button" value="info" />
-                          </Link>
-                        </small>
-                      </Card.Footer>
-                    </Card>
+                          </small>
+                        </Card.Footer>
+                      </Card>
+                    </Link>
                   </Col>
                 );
               })}
