@@ -29,7 +29,14 @@ const allGamesReducer = createReducer(
       console.log(state.games);
     },
     [getAllGames.pending]: (state, action) => {
-      message.loading('Searching...', 1);
+      message.loading({
+        content: 'Loading products...',
+        className: 'custom-class',
+        style: {
+          marginTop: '30vh',
+        },
+        duration: 1,
+      });
     },
     [getSingleGame.fulfilled]: (state, action) => {
       state.singleGame = action.payload;
