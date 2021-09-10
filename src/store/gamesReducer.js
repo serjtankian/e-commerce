@@ -26,7 +26,7 @@ const allGamesReducer = createReducer(
     },
     [getAllGames.fulfilled]: (state, action) => {
       state.allGames = action.payload;
-      console.log(state.games);
+      // console.log(state.games);
     },
     [getAllGames.pending]: (state, action) => {
       message.loading({

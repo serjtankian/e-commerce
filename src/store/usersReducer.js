@@ -58,14 +58,14 @@ const usersReducer = createReducer(initialState, {
   },
   [loginUser.fulfilled]: (state, action) => {
     localStorage.setItem('user', JSON.stringify(action.payload));
-    state.loggedIn = action.payload ;
+    state.loggedIn = action.payload;
     message.success('¡¡Usuario logueado con exito!!', 3);
     return state;
   },
   [loginUser.pending]: (state, action) => {
     message.loading(
       'Estamos buscando tu usuario en la base de datos. Danos unos segundos...',
-      1
+      5
     );
     return state;
   },

@@ -13,7 +13,7 @@ export default function Naxvbar() {
     <>
       <Navbar bg="primary" variant="dark">
         <Container>
-          <Navbar.Brand >Steam Green</Navbar.Brand>
+          <Navbar.Brand>Steam Green</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link>
               <Link
