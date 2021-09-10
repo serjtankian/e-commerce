@@ -1,17 +1,15 @@
-import { configureStore } from "@reduxjs/toolkit";
-import logger from "redux-logger";
-import cartReducer from "./cartReducer";
-import userReducer from "./userReducer";
-import productReducer from "./productReducer";
-import productsReducer from "./productsReducer";
+import { configureStore } from '@reduxjs/toolkit';
+import logger from 'redux-logger';
+import cartReducer from './cartReducer';
+import userReducer from './userReducer';
+import allGamesReducer from './gamesReducer';
 
 const store = configureStore({
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
   reducer: {
+    games: allGamesReducer,
     cart: cartReducer,
     user: userReducer,
-    product: productReducer,
-    products: productsReducer,
   },
 });
 
