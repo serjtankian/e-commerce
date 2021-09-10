@@ -17,15 +17,6 @@ export const loginUser = createAsyncThunk('LOGIN_USER', (user) => {
     });
 });
 
-export const loggedUser = createAsyncThunk('IS_LOGGED', () => {
-  return axios
-    .get('http://localhost:3001/api/users/auth/me')
-    .then((response) => {
-      // console.log(response.data);
-      return response.data;
-    });
-});
-
 export const logoutUser = createAsyncThunk('LOGOUT_USER', () => {
   return axios
     .post('http://localhost:3001/api/users/logout')
@@ -44,12 +35,12 @@ export const setAdmin = createAsyncThunk('SET_ADMIN', (userId) => {
 });
 
 const initialState = {
-  loggedIn: null,
-  id: null,
-  name: '',
-  email: '',
-  password: null,
-  isAdmin: '',
+  loggedIn: JSON.parse(localStorage.getItem('user')) || null,
+  // id: null,
+  // name: '',
+  // email: '',
+  // password: null,
+  // isAdmin: '',
 };
 
 const usersReducer = createReducer(initialState, {
@@ -66,9 +57,9 @@ const usersReducer = createReducer(initialState, {
     message.error('Hubo un error, no pudimos crear tu usuario', 3);
   },
   [loginUser.fulfilled]: (state, action) => {
+    localStorage.setItem('user', JSON.stringify(action.payload));
+    state.loggedIn = action.payload ;
     message.success('¡¡Usuario logueado con exito!!', 3);
-    state = { loggedIn: true, ...action.payload.user };
-    console.log('STATE USER LOGGEDIN', state);
     return state;
   },
   [loginUser.pending]: (state, action) => {
@@ -85,15 +76,9 @@ const usersReducer = createReducer(initialState, {
     );
     return state;
   },
-  [loggedUser.fulfilled]: (state, action) => {
-    state = { ...action.payload.user, loggedIn: true };
-    return state;
-  },
-  [loggedUser.rejected]: (state, action) => {
-    state = { ...initialState, loggedIn: false };
-    return state;
-  },
+
   [logoutUser.fulfilled]: (state, action) => {
+    localStorage.removeItem('user');
     state = { ...initialState, loggedIn: false };
     return state;
   },
