@@ -12,7 +12,7 @@ export const loginUser = createAsyncThunk('LOGIN_USER', (user) => {
   return axios
     .post('http://localhost:3001/api/users/login', user)
     .then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
       return response.data;
     });
 });
@@ -21,7 +21,7 @@ export const loggedUser = createAsyncThunk('IS_LOGGED', () => {
   return axios
     .get('http://localhost:3001/api/users/auth/me')
     .then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
       return response.data;
     });
 });
@@ -30,7 +30,7 @@ export const logoutUser = createAsyncThunk('LOGOUT_USER', () => {
   return axios
     .post('http://localhost:3001/api/users/logout')
     .then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
       return response.data;
     });
 });

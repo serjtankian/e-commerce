@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import { loginUser, logoutUser } from '../store/usersReducer';
@@ -20,8 +20,8 @@ function Login() {
     // try {
     await dispatch(loginUser(loginForm));
     // .then((response) => {
-    console.log('LOGIN USER DISPATCH --> ', user.loggedIn);
-    user.loggedIn ? history.push('/') : history.push('/login');
+    // console.log('LOGIN USER DISPATCH --> ', user.loggedIn);
+    // user.loggedIn ? history.push('/') : history.push('/login');
     // })
     // .catch((response) => {
     // console.log('ERROR LOGIN DISPATCH --> ', response);
@@ -29,6 +29,10 @@ function Login() {
     // something's not right...
     // error(response.status, response.statusText);
   };
+
+  useEffect(() => {
+    if (user.loggedIn) history.push('/');
+  }, [user, history]);
 
   // }
   const onChangeLogin = (e) => {
