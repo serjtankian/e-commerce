@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Row, Container, Col, Form, Button } from 'react-bootstrap';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { registerUser, setRegisterForm } from '../store/usersReducer';
+import { registerUser } from '../store/usersReducer';
 // import validator from 'validator';
 
 function Register() {

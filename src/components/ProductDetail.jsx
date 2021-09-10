@@ -3,10 +3,14 @@ import { Card, Container, Button, Col, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSingleGame } from '../store/gamesReducer';
 import { useLocation } from 'react-router';
+import { addProductToCart } from '../store/cartReducer';
 
 function ProductDetail() {
   const game = useSelector((state) => state.games.singleGame);
+  const userId = useSelector((state) => state.users.loggedIn.id);
+
   const dispatch = useDispatch();
+
   // const [value, setValue] = React.useState('');
 
   const location = useLocation();
@@ -16,12 +20,15 @@ function ProductDetail() {
 
   //   console.log('UN JUEGO -> ', games.id);
   useEffect(() => {
+    console.log('GAME --> ', game.id);
     dispatch(getSingleGame(gameId));
-    // console.log('GAME --> ', game);
   }, [dispatch, gameId]);
 
-  console.log('GAME --> ', game);
-  //   const platform = game.platforms.join(' , ');
+  const addGameToCart = (e) => {
+    e.preventDefault();
+    dispatch(addProductToCart({ gameId, userId }));
+    // Si se registro con exito, se envia a la pagina de Login para que ingrese.
+  };
 
   return (
     <Container className="mt-3 mb-3">
@@ -44,10 +51,11 @@ function ProductDetail() {
               <Card.Text>Rating: {game.rating}</Card.Text>
               <Card.Text>Released date: {game.released}</Card.Text>
               <Row>
-                <Col fluid>
+                <Col>
                   <Button
                     className="justify-content-md-center"
                     variant="primary"
+                    onClick={(e) => addGameToCart(e)}
                   >
                     Add to Cart
                   </Button>
