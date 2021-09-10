@@ -15,14 +15,14 @@ function Cart() {
     dispatch(cartView({ cartId }));
   }, [cartD, singleCart]);
 
-  const games = singleCart.videogames;
+  const games = singleCart ? singleCart.videogames : null;
 
   return (
     <>
       <div>
         {/*-----------------MAP-------------------- */}
-        {games &&
-          games.map((game, i) => {
+        {games? 
+        games && games.map((game, i) => {
             let gameId = game.id;
             return (
               <div key={i}>
@@ -70,7 +70,11 @@ function Cart() {
                 </div>
               </div>
             );
-          })}
+          })
+          :
+          <h5 className="card-title">No items added yet.</h5>
+        }
+
         <div className="card">
           <div className="card-body">
             <h5 className="card-title">Quantity: {singleCart.quantity}</h5>
