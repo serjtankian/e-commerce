@@ -20,7 +20,7 @@ function Cart() {
 
   useEffect(() => {
     dispatch(cartView({ cartId: arrayLocation[2], userId: arrayLocation[1] }))
-  }, [cartD]);
+  }, [cartD, singleCart]);
 
   const decrement = (gameId, userId) => {
     dispatch(decreaseProductCart({ gameId, userId }))

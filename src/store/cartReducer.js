@@ -85,8 +85,8 @@ const initialState = {
 
 const cartReducer = createReducer(initialState, {
   [addProductToCart.fulfilled]: (state, action) => {
-    return (state.cartData = action.payload);
-    /* message.success("Product added to cart", 3); */
+    state.cartData = action.payload;
+     message.success("Product added to cart", 1); 
   },
   [cartView.fulfilled]: (state, action) => {
     // console.log('payload view ', action.payload);
