@@ -10,10 +10,10 @@ Orders.init(
       type: S.INTEGER,
     },
     date: {
-      type: S.INTEGER,
+      type: S.STRING,
     },
     status: {
-      type: S.STRING,
+      type: S.ENUM('complete', 'pending', 'rejected'),
     },
     videogames: {
       type: S.ARRAY(STRING)

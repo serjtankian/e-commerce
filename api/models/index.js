@@ -16,7 +16,6 @@ Cart.belongsTo(User)
 VideoGames.belongsToMany(Cart, { through: 'cart-videogames' })
 Cart.belongsToMany(VideoGames, { through: 'cart-videogames' })
 
-
 // ASOC USER-REVIEWS
 // Reviews tiene fk de user
 User.hasMany(Reviews)
@@ -36,5 +35,8 @@ Categories.belongsToMany(VideoGames, { through: 'categories-videogame' })
 // Order con id de Cart
 Cart.hasOne(Orders)
 Orders.belongsTo(Cart)
+
+User.hasOne(Orders)
+Orders.belongsTo(User)
 
 module.exports = { User, VideoGames, Reviews, Orders, Categories, Cart, CartVideoGames}
