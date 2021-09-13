@@ -18,7 +18,7 @@ function App() {
         <Route exact path="/login" component={LoginContainer} />
         <Route exact path="/register" component={RegisterContainer} />
         <Route path="/products/:id/" component={ProductDetail} />
-        <Route exact path="/cart" component={Cart} />
+        <Route exact path="/:userId/:cartId" component={Cart} />
 
         <Redirect from="/" to="/home" />
       </Switch>
