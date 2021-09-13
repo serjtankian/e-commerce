@@ -295,7 +295,7 @@ let categories = [
   "Adventure",
   "Shooter",
   "RolePlay",
-  "Sci-fi",
+  "Sci-Fi",
   "Horror",
   "Post-Apocaliptic",
   "Logic",
