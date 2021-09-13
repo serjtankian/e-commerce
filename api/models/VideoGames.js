@@ -15,13 +15,13 @@ VideoGames.init(
       type: S.STRING
     },
     rating: {
-      type: S.FLOAT
+      type: S.INTEGER,
     },
     platforms: {
       type: S.ARRAY(STRING)
     },
     price: {
-      type: S.FLOAT,
+      type: S.INTEGER,
     },
     description: {
       type: S.TEXT

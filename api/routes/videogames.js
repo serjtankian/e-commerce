@@ -48,6 +48,7 @@ router.post("/newGame", (req, res, next) => {
     },
   })
     .then((videoGame) => {
+      console.log(category);
       //itera el array de categorias y las encuentra o la crea
       category.forEach((catg) => {
         Categories.findOrCreate({
@@ -85,6 +86,5 @@ router.delete("/remove/:id", (req, res, next) => {
     where: { id: req.params.id },
   }).then(() => res.status(204).end());
 });
-
 
 module.exports = router;

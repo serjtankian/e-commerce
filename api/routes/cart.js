@@ -3,8 +3,8 @@ const router = express.Router();
 const { Cart, Orders, VideoGames, CartVideoGames } = require("../models/index");
 
 //Ruta para mostrar los productos de un carrito
-router.get("/singleCart/:id", (req, res, next) => {
-  Cart.findOne({ where: { id: req.params.id }, include: VideoGames }).then(
+router.get("/singleCart/:id/:user", (req, res, next) => {
+  Cart.findOne({ where: { id: req.params.id, userId: req.params.user }, include: VideoGames }).then(
     (cart) => res.send(cart)
   );
 });
