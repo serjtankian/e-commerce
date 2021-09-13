@@ -1,28 +1,59 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { cartView, deleteFromCart } from '../store/cartReducer';
+import { cartView, deleteFromCart, increaseProductCart, decreaseProductCart } from '../store/cartReducer';
+import { useLocation } from "react-router"
+
 
 function Cart() {
+  const location = useLocation()
+  const arrayLocation = location.pathname.split("/")
   const cartD = useSelector((state) => state.cart.cartData);
   const singleCart = useSelector((state) => state.cart.singleCart);
   const userId = useSelector((state) => state.users.loggedIn.id);
 
+
   const dispatch = useDispatch();
   const cartId = cartD.id;
+  console.log("cartD", cartD)
+  console.log("singleCart", singleCart)
 
   useEffect(() => {
-    dispatch(cartView({ cartId }));
-  }, [cartD, singleCart]);
+    dispatch(cartView({ cartId: arrayLocation[2], userId: arrayLocation[1] }))
+  }, [cartD]);
+
+  const decrement = (gameId, userId) => {
+    dispatch(decreaseProductCart({ gameId, userId }))
+      .then(() => dispatch(cartView({ cartId: arrayLocation[2], userId: arrayLocation[1] })))
+  }
+  const increment = (gameId, userId) => {
+    dispatch(increaseProductCart({ gameId, userId }))
+      .then(() => dispatch(cartView({ cartId: arrayLocation[2], userId: arrayLocation[1] })))
+  }
+  const deleteGame = (gameId, userId) => {
+    dispatch(deleteFromCart({ gameId, userId }))
+      .then(() => dispatch(cartView({ cartId: arrayLocation[2], userId: arrayLocation[1] })))
+  }
+  /*  useEffect(() => {
+   }, [singleCart]); */
 
   const games = singleCart ? singleCart.videogames : null;
+  console.log(games)
+
+  /* 
+    const handleIncrement = (state) => {
+      return state + 1
+    } */
+
+
 
   return (
+
     <>
       <div>
         {/*-----------------MAP-------------------- */}
-        {games? 
-        games && games.map((game, i) => {
+        {games ?
+          games && games.map((game, i) => {
             let gameId = game.id;
             return (
               <div key={i}>
@@ -43,13 +74,13 @@ function Cart() {
                           role="group"
                           aria-label="Basic example"
                         >
-                          <button type="button" class="btn btn-primary">
+                          <button type="button" class="btn btn-primary" onClick={() => decrement(gameId, userId)}>
                             -
                           </button>
                           <button type="text" class="btn btn-primary">
                             {game['cart-videogames'].amountOfGames}
                           </button>
-                          <button type="button" class="btn btn-primary">
+                          <button type="button" class="btn btn-primary" onClick={() => increment(gameId, userId)}>
                             +
                           </button>
                         </div>
@@ -59,7 +90,7 @@ function Cart() {
                           type="button"
                           class="btn btn-primary"
                           onClick={() =>
-                            dispatch(deleteFromCart({ gameId, userId }))
+                            deleteGame(gameId, userId)
                           }
                         >
                           🗑
