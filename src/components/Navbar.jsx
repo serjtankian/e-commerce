@@ -8,7 +8,7 @@ import { logoutUser } from '../store/usersReducer';
 export default function Naxvbar() {
   const user = useSelector((state) => state.users.loggedIn);
   const dispatch = useDispatch();
-  const userId = useSelector((state) => state.users.loggedIn.id);
+  const userId = user? user.id : null;
   const cartId = useSelector((state) => state.cart.cartData.id);
 
   return (
