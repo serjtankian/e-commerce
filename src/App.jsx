@@ -1,13 +1,15 @@
-import React from 'react';
-import { Route, Router, Switch, Redirect } from 'react-router-dom';
-import Footer from './components/Footer';
-import ListOfProducts from './components/ListOfProducts';
-import Navbar from './components/Navbar';
-import ProductDetail from './components/ProductDetail';
-import LoginContainer from './containers/LoginContainer';
-import RegisterContainer from './containers/RegisterContainer';
-import 'antd/dist/antd.css';
-import Cart from './components/Cart';
+import React from "react";
+import { Route, Router, Switch, Redirect } from "react-router-dom";
+import Footer from "./components/Footer";
+import ListOfProducts from "./components/ListOfProducts";
+import Navbar from "./components/Navbar";
+import ProductDetail from "./components/ProductDetail";
+import LoginContainer from "./containers/LoginContainer";
+import RegisterContainer from "./containers/RegisterContainer";
+import "antd/dist/antd.css";
+import Cart from "./components/Cart";
+import AddProductForm from "./components/AddProductForm";
+import EditGameForm from "./components/EditGameForm";
 
 function App() {
   return (
@@ -17,8 +19,14 @@ function App() {
         <Route exact path="/home" component={ListOfProducts} />
         <Route exact path="/login" component={LoginContainer} />
         <Route exact path="/register" component={RegisterContainer} />
-        <Route path="/products/:id/" component={ProductDetail} />
+        <Route exact path="/products/:id/" component={ProductDetail} />
         <Route exact path="/:userId/:cartId" component={Cart} />
+        <Route
+          exact
+          path="/create/videoGame/addNew"
+          component={AddProductForm}
+        />
+        <Route exact path="/videoGame/edit/:id" component={EditGameForm} />
 
         <Redirect from="/" to="/home" />
       </Switch>

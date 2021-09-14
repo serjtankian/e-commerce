@@ -17,27 +17,17 @@ import {
 // import games from './game.json';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllGames } from '../store/gamesReducer';
+import { getCategories } from '../store/actions/categoryActions'
 
 export default function ListOfProducts() {
   const games = useSelector((state) => state.games.allGames);
+  const categories = useSelector((state) => state.allcategories.categories)
   const dispatch = useDispatch();
-  // const [value, setValue] = React.useState('');
-
-  /*  const handleSumit = (event) => {
-     event.preventDefault();
-     dispath(getMovies(value));
-   }; */
 
   useEffect(() => {
     dispatch(getAllGames());
+    dispatch(getCategories())
   }, []);
-
-  // console.log('GAMES -> ', games);
-
-  // const handleChange = (event) => {
-  //   console.log('entrando', event.target.value);
-  //   setValue(event.target.value);
-  // };
 
   return (
     <>
@@ -64,9 +54,13 @@ export default function ListOfProducts() {
 
           <Col md="auto mt-1 mb-1">
             <DropdownButton id="dropdown-basic-button" title="Categories">
-              <Dropdown.Item>Category</Dropdown.Item>
+              {categories?.map(({ id, name }) => {
+                console.log(categories);
+                return <Dropdown.Item key={id} >{name}</Dropdown.Item>
+              })}
+              {/* <Dropdown.Item>Category</Dropdown.Item>
               <Dropdown.Item>Category-1</Dropdown.Item>
-              <Dropdown.Item>Category-2</Dropdown.Item>
+              <Dropdown.Item>Category-2</Dropdown.Item> */}
             </DropdownButton>
           </Col>
           <Col md="auto mt-1 mb-1">
