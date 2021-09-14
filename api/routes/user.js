@@ -8,7 +8,7 @@ const {
   login,
   logout,
   editUser,
-  toAdmin,
+  changeIsAdmin,
   deleteUser,
   allUsers,
 } = require("../controllers/usersControllers");
@@ -25,9 +25,10 @@ router.post("/logout", logout);
 // Ruta para editar un usuario
 router.put("/:email", editUser);
 
-// Ruta para promover administradores (admin)
-//en el body tienen que enviar {isAdmin: "Admin"}
-router.put("/promove/:id", isSAdmin, toAdmin);
+// Ruta para promover o remover administradores (Sadmin es el unico que puede  remover y dar permisos de Admin)
+//en el body tienen que enviar {isAdmin: "Admin"} para promver
+//en el body tienen que enviar {isAdmin: null} para quitar permisos (quitar admin)
+router.put("/authGiven/:id", isSAdmin, changeIsAdmin);
 
 // ruta para eliminar un usuario (admin)
 router.delete("/delete/:id", isSAdmin, deleteUser);

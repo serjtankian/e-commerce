@@ -48,7 +48,12 @@ const editUser = (req, res, next) => {
   );
 };
 
-const toAdmin = (req, res, next) => {
+
+// promover o remover administradores (Sadmin es el unico que puede  remover y dar permisos de Admin)
+//en el body tienen que enviar {isAdmin: "Admin"} para promver
+//en el body tienen que enviar {isAdmin: null} para quitar permisos (quitar admin)
+
+const changeIsAdmin = (req, res, next) => {
   //es Super Admin?
   console.log(req.body);
   User.update(req.body, { where: { id: req.params.id }, returning: true })
@@ -83,7 +88,7 @@ module.exports = {
   login,
   logout,
   editUser,
-  toAdmin,
+  changeIsAdmin,
   deleteUser,
   allUsers,
 };

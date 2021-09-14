@@ -15,6 +15,20 @@ const getSingleGame = (req, res, next) => {
     .catch(next);
 };
 
+// Ruta para agregar un producto***
+//EJEMPLO DEL BODY:
+// {
+//   "name": "nuevo",
+//    "released": "today",
+//    "image": "some url",
+//    "rating": 5,
+//    "platforms": ["this console"],
+//    "price": 100,
+//    "description": "really entertaining game",
+//    "stock": 5,
+//    "category": ["Action", "Sci-Fi"]
+// }
+
 const postProduct = (req, res, next) => {
   const {
     name,
