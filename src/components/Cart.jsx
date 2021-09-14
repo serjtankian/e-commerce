@@ -6,8 +6,11 @@ import {
   deleteFromCart,
   increaseProductCart,
   decreaseProductCart,
+  clearCart,
 } from '../store/cartReducer';
+import { createOrder } from '../store/ordersReducer';
 import { useLocation } from 'react-router';
+import { Link } from 'react-router-dom';
 
 function Cart() {
   const location = useLocation();
@@ -15,11 +18,12 @@ function Cart() {
   const cartD = useSelector((state) => state.cart.cartData);
   const singleCart = useSelector((state) => state.cart.singleCart);
   const userId = useSelector((state) => state.users.loggedIn.id);
+  // const order = useSelector((state) => state.cart);
 
   const dispatch = useDispatch();
   const cartId = cartD.id;
-  console.log('cartD', cartD);
-  console.log('singleCart', singleCart);
+  // console.log('cartD', cartD);
+  // console.log('singleCart', singleCart);
 
   useEffect(() => {
     dispatch(cartView({ cartId: arrayLocation[2], userId: arrayLocation[1] }));
@@ -40,16 +44,13 @@ function Cart() {
       dispatch(cartView({ cartId: arrayLocation[2], userId: arrayLocation[1] }))
     );
   };
-  /*  useEffect(() => {
-   }, [singleCart]); */
 
   const games = singleCart ? singleCart.videogames : null;
-  console.log(games);
 
-  /* 
-    const handleIncrement = (state) => {
-      return state + 1
-    } */
+  const handleClick = () => {
+    dispatch(createOrder({ userId }));
+    // dispatch(clearCart());
+  };
 
   return (
     <>
@@ -60,7 +61,10 @@ function Cart() {
             games &&
             games.map((game, i) => {
               let gameId = game.id;
-              console.log('GAME --> ', game);
+
+              const amountGames = game['cart-videogames'].amountOfGames;
+              const stockGames = game.stock;
+
               return (
                 <div key={i}>
                   <div className="card mb-3 card h-100 ">
@@ -84,16 +88,19 @@ function Cart() {
                               type="button"
                               class="btn btn-primary"
                               onClick={() => decrement(gameId, userId)}
+                              disabled={amountGames < 2}
                             >
                               -
                             </button>
                             <button type="text" class="btn btn-primary">
                               {game['cart-videogames'].amountOfGames}
                             </button>
+
                             <button
                               type="button"
                               class="btn btn-primary"
                               onClick={() => increment(gameId, userId)}
+                              disabled={amountGames >= stockGames}
                             >
                               +
                             </button>
@@ -125,15 +132,22 @@ function Cart() {
 
         <div className="card">
           <div className="card-body">
-            <h5 className="card-title">Quantity: {singleCart? singleCart.quantity: 0}</h5>
-            <h4 className="card-title">Total Price: ${singleCart? singleCart.price: 0}</h4>
+            <h5 className="card-title">
+              Quantity: {singleCart ? singleCart.quantity : 0}
+            </h5>
+            <h4 className="card-title">
+              Total Price: ${singleCart ? singleCart.price : 0}
+            </h4>
 
-            <a href="#" className="btn btn-primary">
+            <Link
+              to="/purchaseConfirm"
+              className="btn btn-primary"
+              onClick={() => handleClick()}
+            >
               Buy
-            </a>
+            </Link>
           </div>
         </div>
-
       </div>
     </>
   );

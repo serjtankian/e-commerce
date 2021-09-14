@@ -24,7 +24,6 @@ function ProductDetail() {
   const gameCategories = game.categories ? game.categories.map(catg => { return catg.name }) : null;
 
   useEffect(() => {
-    console.log('GAME --> ', game.id);
     dispatch(getSingleGame(gameId))
   }, [dispatch, gameId]);
 

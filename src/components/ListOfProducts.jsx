@@ -16,7 +16,8 @@ import {
 } from 'react-bootstrap';
 // import games from './game.json';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllGames } from '../store/gamesReducer';
+import { getAllGames, searchGames } from '../store/gamesReducer';
+import { useHistory } from 'react-router';
 import { getCategories } from '../store/actions/categoryActions'
 
 export default function ListOfProducts() {
@@ -24,10 +25,20 @@ export default function ListOfProducts() {
   const categories = useSelector((state) => state.allcategories.categories)
   const dispatch = useDispatch();
 
+  const [searchInput, setSearchInput] = React.useState('');
+  let history = useHistory();
+
   useEffect(() => {
     dispatch(getAllGames());
     dispatch(getCategories())
   }, []);
+
+  const searchHandler = (e) => {
+    e.preventDefault();
+    dispatch(searchGames(searchInput));
+    setSearchInput('');
+    history.push(`/search/${searchInput}`);
+  };
 
   return (
     <>
@@ -35,14 +46,15 @@ export default function ListOfProducts() {
       <Container>
         <Row>
           <Col className="mt-1 mb-1">
-            <Form>
+            <Form onSubmit={searchHandler}>
               <InputGroup>
                 <FormControl
                   placeholder="Search Games"
                   aria-label="Recipient's username"
                   aria-describedby="basic-addon2"
                   type="search"
-                  // onChange={handleChange}
+                  onChange={(e) => setSearchInput(e.target.value)}
+                  value={searchInput}
                   required
                 />
                 <Button variant="outline-secondary" id="button-addon2">
@@ -58,13 +70,11 @@ export default function ListOfProducts() {
                 console.log(categories);
                 return <Dropdown.Item key={id} >{name}</Dropdown.Item>
               })}
-              {/* <Dropdown.Item>Category</Dropdown.Item>
-              <Dropdown.Item>Category-1</Dropdown.Item>
-              <Dropdown.Item>Category-2</Dropdown.Item> */}
+      
             </DropdownButton>
           </Col>
           <Col md="auto mt-1 mb-1">
-            <DropdownButton id="dropdown-basic-button" title="Rating Store">
+            <DropdownButton id="dropdown-basic-button" title="Rating">
               <Dropdown.Item>Best - Worst</Dropdown.Item>
               <Dropdown.Item>Worst - Best</Dropdown.Item>
             </DropdownButton>
@@ -74,10 +84,12 @@ export default function ListOfProducts() {
 
       <Container className="mt-3 mb-3">
         <CardGroup>
-          <Row xs={1} md={3} className="g-4">
+          <Row xs={1} md={4} className="g-4">
             {/* --------------MAP------------ */}
-            {games &&
+            
+            {games && games.length ? games &&
               games.map((game, i) => {
+                console.log('GAMES -->> ',games)
                 return (
                   <Col key={i}>
                     <Link
@@ -87,8 +99,6 @@ export default function ListOfProducts() {
                       <Card className="h-100">
                         <Card.Img
                           variant="top"
-                          width={300}
-                          height={160}
                           src={game.image}
                         />
                         <Card.Body>
@@ -106,7 +116,14 @@ export default function ListOfProducts() {
                     </Link>
                   </Col>
                 );
-              })}
+              })
+              :
+              <Container>
+                <Row>
+                <h2 className="text-center mt-3 mb-3">Sorry we didn't find any results matching this search</h2>
+                </Row>
+              </Container>
+            }
           </Row>
         </CardGroup>
       </Container>

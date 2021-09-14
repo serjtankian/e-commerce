@@ -3,6 +3,8 @@ import logger from 'redux-logger';
 import allGamesReducer from './gamesReducer';
 import usersReducer from './usersReducer';
 import cartReducer from './cartReducer';
+import orderReducer from './ordersReducer'
+
 import categoryReducer from './categoryReducer'
 
 const store = configureStore({
@@ -12,6 +14,7 @@ const store = configureStore({
     users: usersReducer,
     // login: logginsReducer,
     cart: cartReducer,
+    orders: orderReducer,
     allcategories: categoryReducer
   },
 });
