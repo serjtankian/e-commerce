@@ -17,13 +17,11 @@ function Cart() {
   const arrayLocation = location.pathname.split('/');
   const cartD = useSelector((state) => state.cart.cartData);
   const singleCart = useSelector((state) => state.cart.singleCart);
-  const userId = useSelector((state) => state.users.loggedIn.id);
-  // const order = useSelector((state) => state.cart);
+  const user = useSelector((state) => state.users.loggedIn);
+  const userId = user ? user.id : null;
 
   const dispatch = useDispatch();
-  const cartId = cartD.id;
-  // console.log('cartD', cartD);
-  // console.log('singleCart', singleCart);
+
 
   useEffect(() => {
     dispatch(cartView({ cartId: arrayLocation[2], userId: arrayLocation[1] }));
@@ -49,7 +47,7 @@ function Cart() {
 
   const handleClick = () => {
     dispatch(createOrder({ userId }));
-    // dispatch(clearCart());
+    dispatch(clearCart());
   };
 
   return (
