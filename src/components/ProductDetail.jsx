@@ -24,7 +24,7 @@ function ProductDetail() {
 
   //   console.log('UN JUEGO -> ', games.id);
   useEffect(() => {
-    console.log('GAME --> ', game.id);
+    // console.log('GAME --> ', game.id);
     dispatch(getSingleGame(gameId));
   }, [dispatch, gameId]);
 

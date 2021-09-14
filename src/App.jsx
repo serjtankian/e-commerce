@@ -8,6 +8,7 @@ import LoginContainer from './containers/LoginContainer';
 import RegisterContainer from './containers/RegisterContainer';
 import 'antd/dist/antd.css';
 import Cart from './components/Cart';
+import PurchaseConfirm from './components/PurchaseConfirm';
 
 function App() {
   return (
@@ -18,7 +19,9 @@ function App() {
         <Route exact path="/login" component={LoginContainer} />
         <Route exact path="/register" component={RegisterContainer} />
         <Route path="/products/:id/" component={ProductDetail} />
+        <Route path="/search/" component={ListOfProducts} />
         <Route exact path="/:userId/:cartId" component={Cart} />
+        <Route exact path="/purchaseConfirm" component={PurchaseConfirm} />
 
         <Redirect from="/" to="/home" />
       </Switch>

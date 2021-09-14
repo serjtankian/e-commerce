@@ -18,6 +18,12 @@ export const getSingleGame = createAsyncThunk('GET_SINGLE_GAME', (gameId) => {
     .then((r) => r.data);
 });
 
+export const searchGames = createAsyncThunk('SEARCH_GAMES', (searchInput) => {
+  return axios
+    .get(`http://localhost:3001/api/search?search=${searchInput}`)
+    .then((r) => r.data);
+});
+
 const allGamesReducer = createReducer(
   { allGames: [], singleGame: {} },
   {
@@ -41,6 +47,20 @@ const allGamesReducer = createReducer(
     [getSingleGame.fulfilled]: (state, action) => {
       state.singleGame = action.payload;
     },
+    [searchGames.fulfilled]: (state, action) => {
+      state.allGames = action.payload;
+    },
+    [searchGames.pending]: (state, action) => {
+      message.loading({
+        content: 'Loading games...',
+        className: 'custom-class',
+        style: {
+          marginTop: '30vh',
+        },
+        duration: 3,
+      });
+    },
+    [searchGames.rejected]: (state, action) => state,
   }
 );
 
