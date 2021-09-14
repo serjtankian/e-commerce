@@ -15,7 +15,8 @@ const searchByNameDesc = (req, res, next) => {
     })
     .then((matchedGames) => {
       res.status(200).send(matchedGames);
-    });
+    })
+    .catch(next);
 };
 
 //BUSCADOR de juegos POR Categoria
@@ -25,9 +26,11 @@ const searchByCategory = (req, res, next) => {
   Categories.findAll({
     where: { name: categoryName },
     include: [{ model: VideoGames }],
-  }).then((arrCatg) => {
-    res.send(arrCatg);
-  });
+  })
+    .then((arrCatg) => {
+      res.send(arrCatg);
+    })
+    .catch(next);
 };
 
 module.exports = { searchByNameDesc, searchByCategory };
