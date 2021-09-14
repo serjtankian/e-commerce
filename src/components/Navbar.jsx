@@ -30,7 +30,7 @@ export default function Naxvbar() {
               </Link>
             </Nav.Link>
             <Nav.Link>
-              {user ? (
+              {userId ? (
                 <Link
                   to={`/`}
                   className="btn btn-outline-primary text-white text-decoration-none"

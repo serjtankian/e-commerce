@@ -21,6 +21,7 @@ function App() {
         <Route exact path="/login" component={LoginContainer} />
         <Route exact path="/register" component={RegisterContainer} />
         <Route exact path="/products/:id/" component={ProductDetail} />
+        <Route  path="/search/" component={ListOfProducts} />
         <Route exact path="/purchaseConfirm" component={PurchaseConfirm} />
         <Route exact path="/:userId/:cartId" component={Cart} />
         <Route
@@ -29,7 +30,7 @@ function App() {
           component={AddProductForm}
         />
         <Route exact path="/videoGame/edit/:id" component={EditGameForm} />
-        <Route exact path="/search/:search" component={ListOfProducts} />
+        
 
         <Redirect from="/" to="/home" />
       </Switch>

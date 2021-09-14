@@ -1,13 +1,13 @@
-import axios from 'axios';
+import axios from "axios";
 import {
   createReducer,
   createAsyncThunk,
   createAction,
-} from '@reduxjs/toolkit';
-import { message } from 'antd';
+} from "@reduxjs/toolkit";
+import { message } from "antd";
 
 export const addProductToCart = createAsyncThunk(
-  'ADD_PRODUCT_TO_CART',
+  "ADD_PRODUCT_TO_CART",
   ({ gameId, userId }) => {
     // const { cart } = thunkApi.getState();
     // console.log('CART REDUCER : CART ', cart);
@@ -20,13 +20,13 @@ export const addProductToCart = createAsyncThunk(
         return response.data;
       })
       .catch((e) => {
-        console.log('catch', e);
+        console.log("catch", e);
       });
   }
 );
 
-export const cartView = createAsyncThunk('CART_VIEW', ({ cartId, userId }) => {
-  console.log('cartView', cartId, userId);
+export const cartView = createAsyncThunk("CART_VIEW", ({ cartId, userId }) => {
+  console.log("cartView", cartId, userId);
   return axios
     .get(`http://localhost:3001/api/cart/singleCart/${cartId}/${userId}`)
     .then((response) => {
@@ -34,12 +34,12 @@ export const cartView = createAsyncThunk('CART_VIEW', ({ cartId, userId }) => {
       return response.data;
     })
     .catch((e) => {
-      console.log('catch', e);
+      console.log("catch", e);
     });
 });
 
 export const deleteFromCart = createAsyncThunk(
-  'DELETE_FROM_CART',
+  "DELETE_FROM_CART",
   ({ gameId, userId }) => {
     return axios
       .delete(
@@ -50,13 +50,13 @@ export const deleteFromCart = createAsyncThunk(
         return response.data;
       })
       .catch((e) => {
-        console.log('catch', e);
+        console.log("catch", e);
       });
   }
 );
 
 export const increaseProductCart = createAsyncThunk(
-  'INCREASE_PRODUCT_CART',
+  "INCREASE_PRODUCT_CART",
   ({ gameId, userId }) => {
     return axios
       .put(`http://localhost:3001/api/cart/increaseProduct/${gameId}/${userId}`)
@@ -65,13 +65,13 @@ export const increaseProductCart = createAsyncThunk(
         return response.data;
       })
       .catch((e) => {
-        console.log('catch', e);
+        console.log("catch", e);
       });
   }
 );
 
 export const decreaseProductCart = createAsyncThunk(
-  'DECREASE_PRODUCT_CART',
+  "DECREASE_PRODUCT_CART",
   ({ gameId, userId }) => {
     return axios
       .put(`http://localhost:3001/api/cart/decreaseProduct/${gameId}/${userId}`)
@@ -80,12 +80,12 @@ export const decreaseProductCart = createAsyncThunk(
         return response.data;
       })
       .catch((e) => {
-        console.log('catch', e);
+        console.log("catch", e);
       });
   }
 );
 
-// export const clearCart = createAction('CLEAR_CART');
+export const clearCart = createAction("CLEAR_CART");
 
 const initialState = {
   cartData: {},
@@ -95,7 +95,7 @@ const initialState = {
 const cartReducer = createReducer(initialState, {
   [addProductToCart.fulfilled]: (state, action) => {
     state.cartData = action.payload;
-    message.success('Product added to cart', 1);
+    message.success("Product added to cart", 1);
   },
   [cartView.fulfilled]: (state, action) => {
     // console.log('payload view ', action.payload);
@@ -113,10 +113,11 @@ const cartReducer = createReducer(initialState, {
     state.singleCart = action.payload;
     /*     message.success("Cart updated...", 3); */
   },
-  // [clearCart.fulfilled]: (state, action) => {
-  //   state.cartData = {};
-  //   /*     message.success("Cart updated...", 3); */
-  // },
+  [clearCart]: (state, action) => {
+    state.cartData = {};
+    state.singleCart = {};
+    /*     message.success("Cart updated...", 3); */
+  },
 });
 
 export default cartReducer;
