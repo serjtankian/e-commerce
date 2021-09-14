@@ -4,11 +4,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Nav, Container, Navbar } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '../store/usersReducer';
+import AddButton from './AdminButtons/AddButton';
+
+
 
 export default function Naxvbar() {
   const user = useSelector((state) => state.users.loggedIn);
   const dispatch = useDispatch();
-  const userId = user? user.id : null;
+  const userId = user ? user.id : null;
+  const userStatus = user ? user.isAdmin : null;
   const cartId = useSelector((state) => state.cart.cartData.id);
 
   return (
@@ -52,10 +56,11 @@ export default function Naxvbar() {
                 </span>
               )}
             </Nav.Link>
+            {userStatus === "Admin" || userStatus === "SAdmin" ? <AddButton /> : null}
             <Nav.Link>
               <Link
                 className="btn btn-outline-primary text-white text-decoration-none"
-                to={user ? `/${userId}/${cartId}` : "/login"}
+                to={userId ? `/${userId}/${cartId}` : "/login"}
               >
                 🛒
               </Link>
