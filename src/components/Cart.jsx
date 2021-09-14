@@ -125,14 +125,15 @@ function Cart() {
 
         <div className="card">
           <div className="card-body">
-            <h5 className="card-title">Quantity: {singleCart.quantity}</h5>
-            <h4 className="card-title">Total Price: ${singleCart.price}</h4>
+            <h5 className="card-title">Quantity: {singleCart? singleCart.quantity: 0}</h5>
+            <h4 className="card-title">Total Price: ${singleCart? singleCart.price: 0}</h4>
 
             <a href="#" className="btn btn-primary">
               Buy
             </a>
           </div>
         </div>
+
       </div>
     </>
   );
