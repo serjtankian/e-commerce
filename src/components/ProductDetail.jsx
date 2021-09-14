@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getSingleGame } from '../store/gamesReducer';
 import { useHistory, useLocation } from 'react-router';
 import { addProductToCart } from '../store/cartReducer';
-
+import EditButton from './AdminButtons/EditButton';
 
 import { message } from 'antd'
 
@@ -12,20 +12,19 @@ function ProductDetail() {
   const game = useSelector((state) => state.games.singleGame);
   const user = useSelector((state) => state.users.loggedIn)
   const userId = user ? user.id : null;
+  const userStatus = user ? user.isAdmin : null;
   let history = useHistory();
   const dispatch = useDispatch();
 
-  // const [value, setValue] = React.useState('');
 
   const location = useLocation();
   const pathName = location.pathname;
   const gameId = parseInt(pathName.slice(10));
-  // console.log('ID: ', gameId);
+  const gamePlatforms = game.platforms;
+  const gameCategories = game.categories ? game.categories.map(catg => { return catg.name }) : null;
 
-  //   console.log('UN JUEGO -> ', games.id);
   useEffect(() => {
-    // console.log('GAME --> ', game.id);
-    dispatch(getSingleGame(gameId));
+    dispatch(getSingleGame(gameId))
   }, [dispatch, gameId]);
 
   const addGameToCart = (e) => {
@@ -52,8 +51,8 @@ function ProductDetail() {
             <Card.Img variant="top" src={game.image} />
             <Card.Body>
               <Card.Title>{game.name}</Card.Title>
-              <Card.Text>Disponible en plataformas: </Card.Text>
-              <Card.Text>Categories: </Card.Text>
+              <Card.Text>Disponible en plataformas: {gamePlatforms ? gamePlatforms.join(", ") : null} </Card.Text>
+              <Card.Text>Categories: {gameCategories ? gameCategories.join(", ") : null} </Card.Text>
               <Card.Text>{game.description}</Card.Text>
               <Card.Text>Price: ${game.price}</Card.Text>
               <Card.Text>Stock: {game.stock}</Card.Text>
@@ -68,6 +67,7 @@ function ProductDetail() {
                   >
                     Add to Cart
                   </Button>
+                  {userStatus === "Admin" || userStatus === "SAdmin" ? <EditButton gameId={gameId} /> : null}
                 </Col>
               </Row>
             </Card.Body>

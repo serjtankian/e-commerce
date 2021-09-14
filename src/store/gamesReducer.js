@@ -1,18 +1,18 @@
-import axios from 'axios';
+import axios from "axios";
 import {
   createAsyncThunk,
   createReducer,
   createAction,
-} from '@reduxjs/toolkit';
-import { message } from 'antd';
+} from "@reduxjs/toolkit";
+import { message } from "antd";
 
-const clearGames = createAction('CLEAR_GAMES');
+const clearGames = createAction("CLEAR_GAMES");
 
-export const getAllGames = createAsyncThunk('GET_ALL_GAMES', () => {
-  return axios.get('http://localhost:3001/api/videoGames').then((r) => r.data);
+export const getAllGames = createAsyncThunk("GET_ALL_GAMES", () => {
+  return axios.get("http://localhost:3001/api/videoGames").then((r) => r.data);
 });
 
-export const getSingleGame = createAsyncThunk('GET_SINGLE_GAME', (gameId) => {
+export const getSingleGame = createAsyncThunk("GET_SINGLE_GAME", (gameId) => {
   return axios
     .get(`http://localhost:3001/api/videoGames/${gameId}`)
     .then((r) => r.data);
@@ -22,6 +22,18 @@ export const searchGames = createAsyncThunk('SEARCH_GAMES', (searchInput) => {
   return axios
     .get(`http://localhost:3001/api/search?search=${searchInput}`)
     .then((r) => r.data);
+});
+
+export const editGame = createAsyncThunk("EDIT_GAME", (gameId) => {
+  return axios
+    .put(`http://localhost:3001/api/videoGames/edit/${gameId}`)
+    .then((r) => r.data);
+});
+
+export const addGame = createAsyncThunk("ADD_NEW_GAME", (body) => {
+  return axios
+    .post(`http://localhost:3001/api/videoGames/newGame`, body)
+    .then((r) => console.log(r.data));
 });
 
 const allGamesReducer = createReducer(
@@ -36,10 +48,10 @@ const allGamesReducer = createReducer(
     },
     [getAllGames.pending]: (state, action) => {
       message.loading({
-        content: 'Loading products...',
-        className: 'custom-class',
+        content: "Loading products...",
+        className: "custom-class",
         style: {
-          marginTop: '30vh',
+          marginTop: "30vh",
         },
         duration: 1,
       });
@@ -61,6 +73,22 @@ const allGamesReducer = createReducer(
       });
     },
     [searchGames.rejected]: (state, action) => state,
+    [addGame.fulfilled]: (state, action) => {
+      message.success("Added succesfully");
+    },
+    [addGame.pending]: (state, action) => {
+      message.loading({
+        content: "Adding, give me one second...",
+        className: "custom-class",
+        style: {
+          marginTop: "30vh",
+        },
+        duration: 1,
+      });
+    },
+    [addGame.rejected]: (state, action) => {
+      message.error("Something went wrong, try again ;)");
+    },
   }
 );
 

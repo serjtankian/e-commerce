@@ -18,9 +18,11 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllGames, searchGames } from '../store/gamesReducer';
 import { useHistory } from 'react-router';
+import { getCategories } from '../store/actions/categoryActions'
 
 export default function ListOfProducts() {
   const games = useSelector((state) => state.games.allGames);
+  const categories = useSelector((state) => state.allcategories.categories)
   const dispatch = useDispatch();
 
   const [searchInput, setSearchInput] = React.useState('');
@@ -28,6 +30,7 @@ export default function ListOfProducts() {
 
   useEffect(() => {
     dispatch(getAllGames());
+    dispatch(getCategories())
   }, []);
 
   const searchHandler = (e) => {
@@ -63,9 +66,11 @@ export default function ListOfProducts() {
 
           <Col md="auto mt-1 mb-1">
             <DropdownButton id="dropdown-basic-button" title="Categories">
-              <Dropdown.Item>Category</Dropdown.Item>
-              <Dropdown.Item>Category-1</Dropdown.Item>
-              <Dropdown.Item>Category-2</Dropdown.Item>
+              {categories?.map(({ id, name }) => {
+                console.log(categories);
+                return <Dropdown.Item key={id} >{name}</Dropdown.Item>
+              })}
+      
             </DropdownButton>
           </Col>
           <Col md="auto mt-1 mb-1">
