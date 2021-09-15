@@ -34,6 +34,11 @@ export const setAdmin = createAsyncThunk('SET_ADMIN', (userId) => {
     });
 });
 
+export const userOrders = createAsyncThunk('GET_ORDERS', (userId)=> {
+  return axios.get(`http://localhost:3001/api/orders/allFrom/${userId}`)
+  .then(r=> r.data)
+})
+
 const initialState = {
   loggedIn: JSON.parse(localStorage.getItem('user')) || null,
   // id: null,
@@ -41,6 +46,7 @@ const initialState = {
   // email: '',
   // password: null,
   // isAdmin: '',
+  allOrders: []
 };
 
 const usersReducer = createReducer(initialState, {
@@ -85,6 +91,10 @@ const usersReducer = createReducer(initialState, {
   [setAdmin.fulfilled]: (state, action) => {
     return state;
   },
+  [userOrders.fulfilled]: (state, action)=> {
+    console.log('PAYLOAD DE ORDERS', action.payload);
+    state.allOrders = action.payload
+  }
 });
 
 // const userReducer = createSlice(initialState, {
