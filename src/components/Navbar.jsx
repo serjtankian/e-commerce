@@ -5,6 +5,7 @@ import { Nav, Container, Navbar } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '../store/usersReducer';
 import AddButton from './AdminButtons/AddButton';
+import SeeUsersButton from './SadminButtons/SeeUsersButton.jsx';
 
 
 
@@ -55,8 +56,18 @@ export default function Naxvbar() {
                   </Link>
                 </span>
               )}
+              {userId ?
+                <Link
+                  to={`/profile/edit/${user.email}`}
+                  className="btn btn-outline-primary text-white text-decoration-none"
+                >
+                  My Profile
+                </Link>
+                :
+                null}
             </Nav.Link>
             {userStatus === "Admin" || userStatus === "SAdmin" ? <AddButton /> : null}
+            {userStatus === "SAdmin" ? <SeeUsersButton /> : null}
             <Nav.Link>
               <Link
                 className="btn btn-outline-primary text-white text-decoration-none"

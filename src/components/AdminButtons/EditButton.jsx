@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Card, Container, Button, Col, Row } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 export default function EditButton({ gameId }) {
 
     return (

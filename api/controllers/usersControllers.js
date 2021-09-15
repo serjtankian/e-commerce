@@ -74,7 +74,7 @@ const deleteUser = (req, res, next) => {
 };
 
 const allUsers = (req, res, next) => {
-  User.allExceptsMe(req.user.id)
+  User.allExceptsMe(req.params.userId)
     .then((users) => {
       if (!users) res.send([]).end();
       res.status(200).send(users);

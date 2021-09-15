@@ -69,7 +69,7 @@ const postProduct = (req, res, next) => {
           //setea la categoria al videojuego
           videoGame[0].addCategory(catg[0]);
           videoGame[0].save();
-          res.sendStatus(201)
+          res.sendStatus(201);
         });
       });
     })
@@ -77,13 +77,55 @@ const postProduct = (req, res, next) => {
 };
 
 const editProduct = (req, res, next) => {
+  const {
+    name,
+    released,
+    image,
+    rating,
+    platforms,
+    price,
+    description,
+    stock,
+    category,
+  } = req.body;
   let { id } = req.params;
-  VideoGames.update(req.body, {
-    where: { id },
-    returning: true,
-  })
-    .then(([n, gameUpdate]) => {
-      res.status(202).send(gameUpdate[0]);
+
+  category.forEach((catg) => {
+    Categories.findOrCreate({
+      where: { name: catg },
+      defaults: {
+        name: catg,
+      },
+    }).then((catg) => {
+      VideoGames.findByPk(id).then((game) => {
+        game.getCategories().then((cats) => {
+          game.removeCategories(cats).then(() => {
+            game.addCategory(catg[0]);
+            game.save();
+          });
+        });
+      });
+    });
+  });
+
+  VideoGames.update(
+    {
+      name,
+      released,
+      image,
+      rating,
+      platforms,
+      price,
+      description,
+      stock,
+    },
+    {
+      where: { id },
+      returning: true,
+    }
+  )
+    .then(([n, gameUpdated]) => {
+      res.status(201).send(gameUpdated[0]);
     })
     .catch(next);
 };

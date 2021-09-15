@@ -34,6 +34,7 @@ export default function AddProductForm() {
                 setBody({ ...body, rating: e.target.value });
                 return;
             case "platforms":
+                if (e.target.value === "" || " ") return;
                 let platformsNames = e.target.value.trim();
                 let splited = platformsNames.includes(",")
                     ? platformsNames.split(", ")
@@ -51,6 +52,7 @@ export default function AddProductForm() {
                 setBody({ ...body, description: e.target.value });
                 return;
             case "categories":
+                if (e.target.value === "" || " ") return;
                 let categories = e.target.value.trim();
                 let splitedCatg = categories.includes(",")
                     ? categories.split(", ")
