@@ -70,7 +70,7 @@ export default function ListOfProducts() {
                 console.log(categories);
                 return <Dropdown.Item key={id} >{name}</Dropdown.Item>
               })}
-      
+
             </DropdownButton>
           </Col>
           <Col md="auto mt-1 mb-1">
@@ -86,10 +86,10 @@ export default function ListOfProducts() {
         <CardGroup>
           <Row xs={1} md={4} className="g-4">
             {/* --------------MAP------------ */}
-            
+
             {games && games.length ? games &&
               games.map((game, i) => {
-                console.log('GAMES -->> ',games)
+                console.log('GAMES -->> ', games)
                 return (
                   <Col key={i}>
                     <Link
@@ -120,7 +120,7 @@ export default function ListOfProducts() {
               :
               <Container>
                 <Row>
-                <h2 className="text-center mt-3 mb-3">Sorry we didn't find any results matching this search</h2>
+                  <h2 className="text-center mt-3 mb-3">Sorry we didn't find any results matching this search</h2>
                 </Row>
               </Container>
             }
