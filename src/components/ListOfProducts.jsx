@@ -75,6 +75,14 @@ export default function ListOfProducts() {
             </Form>
           </Col>
           <Col md="auto mt-1 mb-1">
+<<<<<<< HEAD
+            <DropdownButton id="dropdown-basic-button" title="Categories">
+              {categories?.map(({ id, name }) => {
+                console.log(categories);
+                return <Dropdown.Item key={id} >{name}</Dropdown.Item>
+              })}
+
+=======
             <DropdownButton
               id="dropdown-basic-button"
               title={newTitle ? newTitle : "Categories"}
@@ -84,6 +92,7 @@ export default function ListOfProducts() {
                 <Dropdown.Item key={id}>{name}</Dropdown.Item>
                 //  <Link></Link>
               ))}
+>>>>>>> 5571425f4e96d7203ce03ccb4b1884da9caa70de
             </DropdownButton>
           </Col>
           <Col md="auto mt-1 mb-1">
@@ -100,10 +109,16 @@ export default function ListOfProducts() {
           <Row xs={1} md={4} className="g-4">
             {/* --------------MAP------------ */}
 
+<<<<<<< HEAD
+            {games && games.length ? games &&
+              games.map((game, i) => {
+                console.log('GAMES -->> ', games)
+=======
             {games && games.length ? (
               games &&
               games.map((game, i) => {
                 // console.log("GAMES -->> ", games);
+>>>>>>> 5571425f4e96d7203ce03ccb4b1884da9caa70de
                 return (
                   <Col key={i}>
                     <Link
@@ -131,9 +146,13 @@ export default function ListOfProducts() {
             ) : (
               <Container>
                 <Row>
+<<<<<<< HEAD
+                  <h2 className="text-center mt-3 mb-3">Sorry we didn't find any results matching this search</h2>
+=======
                   <h2 className="text-center mt-3 mb-3">
                     Sorry we didn't find any results matching this search
                   </h2>
+>>>>>>> 5571425f4e96d7203ce03ccb4b1884da9caa70de
                 </Row>
               </Container>
             )}

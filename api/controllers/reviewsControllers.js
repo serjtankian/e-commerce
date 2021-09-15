@@ -1,12 +1,13 @@
 const { Reviews, User } = require("../models/index");
 
-const allReview = (req, res, next)=> {
+const allReview = (req, res, next) => {
   Reviews.findAll({
     where: { videogameId: req.params.vgId },
-    include: User 
-  }).then(reviews=> res.status(200).send(reviews))
-  .catch(next)
-}
+    include: User,
+  })
+    .then((reviews) => res.status(200).send(reviews))
+    .catch(next);
+};
 
 const addReview = (req, res, next) => {
   Reviews.findOrCreate({

@@ -19,11 +19,12 @@ function App() {
       <Navbar />
       <Switch>
         <Route exact path="/home" component={ListOfProducts} />
+        <Route path="/search/" component={ListOfProducts} />
         <Route exact path="/login" component={LoginContainer} />
         <Route exact path="/register" component={RegisterContainer} />
         <Route exact path="/orders" component={OrdersHistory} />
         <Route exact path="/products/:id/" component={ProductDetail} />
-        <Route  path="/search/" component={ListOfProducts} />
+
         <Route exact path="/purchaseConfirm" component={PurchaseConfirm} />
         <Route exact path="/:userId/:cartId" component={Cart} />
         <Route
@@ -32,6 +33,11 @@ function App() {
           component={AddProductForm}
         />
         <Route exact path="/videoGame/edit/:id" component={EditGameForm} />
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 5571425f4e96d7203ce03ccb4b1884da9caa70de
         <Redirect from="/" to="/home" />
       </Switch>
       <Footer />
