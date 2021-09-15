@@ -4,7 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getSingleGame } from '../store/gamesReducer';
 import { useHistory, useLocation } from 'react-router';
 import { addProductToCart } from '../store/cartReducer';
-import EditButton from './AdminButtons/EditButton'
+import EditButton from './AdminButtons/EditButton';
+import DeleteButton from './AdminButtons/DeleteButton';
+
 import { message } from 'antd'
 import { postReview } from "../store/reviewReducer"
 
@@ -77,6 +79,7 @@ function ProductDetail() {
                 <Col>
 
                   {userStatus === "Admin" || userStatus === "SAdmin" ? <EditButton gameId={gameId} /> : null}
+                  {userStatus === "Admin" || userStatus === "SAdmin" ? <DeleteButton gameId={gameId}/> : null}
                 </Col>
               </Row>
             </Card.Body>

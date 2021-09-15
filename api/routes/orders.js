@@ -5,10 +5,13 @@ const {
   newOrder,
   completeOrder,
   orderHistory,
+  getAllPending
 } = require("../controllers/ordersControllers");
 
 // Ruta que devuelva el historial de órdenes de compra de un usuario
 router.get("/allFrom/:userId", orderHistory);
+
+router.get("/seePending", getAllPending)
 
 // Ruta de compra del carrito actual
 router.post("/:userId", newOrder);

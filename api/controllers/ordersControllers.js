@@ -9,7 +9,6 @@ const getGameNames = (arrGames) => {
   });
 };
 
-
 // configurar envio de email confirmando la compra
 const sendEmail = async (order, user, status) => {
   console.log(order.videogames);
@@ -92,4 +91,10 @@ const orderHistory = (req, res, next) => {
     .catch(next);
 };
 
-module.exports = { newOrder, completeOrder, orderHistory };
+const getAllPending = (req, res, next) => {
+  Orders.findAll({ where: { status: "pending" } }).then((pendingOrders) =>
+    res.status(201).send(pendingOrders)
+  );
+};
+
+module.exports = { newOrder, completeOrder, orderHistory, getAllPending };

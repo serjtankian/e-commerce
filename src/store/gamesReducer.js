@@ -24,15 +24,21 @@ export const searchGames = createAsyncThunk('SEARCH_GAMES', (searchInput) => {
     .then((r) => r.data);
 });
 
-export const editGame = createAsyncThunk("EDIT_GAME", (gameId) => {
+export const editGame = createAsyncThunk("EDIT_GAME", ({gameId, body}) => {
   return axios
-    .put(`http://localhost:3001/api/videoGames/edit/${gameId}`)
+    .put(`http://localhost:3001/api/videoGames/edit/${gameId}`, body)
     .then((r) => r.data);
 });
 
 export const addGame = createAsyncThunk("ADD_NEW_GAME", (body) => {
   return axios
     .post(`http://localhost:3001/api/videoGames/newGame`, body)
+    .then((r) => console.log(r.data));
+});
+
+export const deleteGame = createAsyncThunk("DELETE_GAME", (gameId) => {
+  return axios
+    .delete(`http://localhost:3001/api/videoGames/remove/${gameId}`)
     .then((r) => console.log(r.data));
 });
 
@@ -95,6 +101,12 @@ const allGamesReducer = createReducer(
     },
     [addGame.rejected]: (state, action) => {
       message.error("Something went wrong, try again ;)");
+    },
+    [editGame.fulfilled]: (state, action) => {
+      message.success("Updated succesfully!");
+    },
+    [deleteGame.fulfilled]: (state, action) => {
+      message.success("Success!");
     },
     [byCategory.fulfilled]: (state, action)=> {
       state.allGames = action.payload[0].videogames

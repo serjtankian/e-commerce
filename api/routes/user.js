@@ -28,12 +28,12 @@ router.put("/:email", editUser);
 // Ruta para promover o remover administradores (Sadmin es el unico que puede  remover y dar permisos de Admin)
 //en el body tienen que enviar {isAdmin: "Admin"} para promver
 //en el body tienen que enviar {isAdmin: null} para quitar permisos (quitar admin)
-router.put("/authGiven/:id", isSAdmin, changeIsAdmin);
+router.put("/authGiven/:id", changeIsAdmin);
 
-// ruta para eliminar un usuario (admin)
-router.delete("/delete/:id", isSAdmin, deleteUser);
+// ruta para eliminar un usuario (Sadmin)
+router.delete("/delete/:id", deleteUser);
 
-// ruta para ver todos los usuarios (admin)
-router.get("/", isSAdmin, allUsers);
+// ruta para ver todos los usuarios (Sadmin)
+router.get("/:userId", allUsers);
 
 module.exports = router;
