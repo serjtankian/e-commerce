@@ -70,9 +70,15 @@ export const deleteUser = createAsyncThunk("DELETE_USER", (userId) => {
     });
 });
 
+export const userOrders = createAsyncThunk('GET_ORDERS', (userId)=> {
+  return axios.get(`http://localhost:3001/api/orders/allFrom/${userId}`)
+  .then(r=> r.data)
+})
+
 const initialState = {
   loggedIn: JSON.parse(localStorage.getItem("user")) || null,
   allUsers: [],
+  allOrders: []
 };
 
 const usersReducer = createReducer(initialState, {
@@ -128,6 +134,10 @@ const usersReducer = createReducer(initialState, {
   [editUser.fulfilled]: (state, action) => {
     message.success("Updated!");
   },
+  [userOrders.fulfilled]: (state, action)=> {
+    console.log('PAYLOAD DE ORDERS', action.payload);
+    state.allOrders = action.payload
+  }
 });
 
 export default usersReducer;

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Card, Container, Button, Col, Row } from 'react-bootstrap';
+import { Card, Container, Button, Col, Row, Form, FloatingLabel } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSingleGame } from '../store/gamesReducer';
 import { useHistory, useLocation } from 'react-router';
@@ -8,6 +8,7 @@ import EditButton from './AdminButtons/EditButton';
 import DeleteButton from './AdminButtons/DeleteButton';
 
 import { message } from 'antd'
+import { postReview } from "../store/reviewReducer"
 
 function ProductDetail() {
   const game = useSelector((state) => state.games.singleGame);
@@ -17,12 +18,13 @@ function ProductDetail() {
   let history = useHistory();
   const dispatch = useDispatch();
 
-
   const location = useLocation();
   const pathName = location.pathname;
   const gameId = parseInt(pathName.slice(10));
   const gamePlatforms = game.platforms;
   const gameCategories = game.categories ? game.categories.map(catg => { return catg.name }) : null;
+
+  const [reviewInput, setReviewInput] = React.useState('');
 
   useEffect(() => {
     dispatch(getSingleGame(gameId))
@@ -38,6 +40,11 @@ function ProductDetail() {
       dispatch(addProductToCart({ gameId, userId }));
     }
   };
+
+  const addReviewToGame = (e) => {
+    e.preventDefault()
+    dispatch(postReview({ gameId, userId, reviewInput, }))
+  }
 
   return (
     <Container className="mt-3 mb-3">
@@ -68,6 +75,9 @@ function ProductDetail() {
                   >
                     Add to Cart
                   </Button>
+                </Col>
+                <Col>
+
                   {userStatus === "Admin" || userStatus === "SAdmin" ? <EditButton gameId={gameId} /> : null}
                   {userStatus === "Admin" || userStatus === "SAdmin" ? <DeleteButton gameId={gameId}/> : null}
                 </Col>
@@ -76,6 +86,46 @@ function ProductDetail() {
           </Card>
         </Col>
       </Row>
+      {userId ? <Row className="mt-3 mb-3">
+        <h5>Add review:</h5>
+
+        <Form onSubmit={addReviewToGame} >
+          <Row>
+            {/* rate */}
+            <Form.Select aria-label="Select game rating">
+              <option>Select rating:</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </Form.Select>
+          </Row>
+          {/* text comment */}
+          <Row>
+            <FloatingLabel controlId="floatingTextarea2" label="Leave a comment here"  >
+              <Form.Control
+                as="textarea"
+                placeholder="Leave a comment here"
+                style={{ height: '100px' }}
+                onChange={(e) => setReviewInput(e.target.value)}
+              />
+              <Button
+                className="justify-content-md-center"
+                variant="primary"
+                type="submit">Submit</Button>
+            </FloatingLabel>
+          </Row>
+        </Form>
+      </Row>
+        : null}
+
+
+      <Row className="mt-3 mb-3">
+        <h2> Reviews from other customers:</h2>
+
+      </Row>
+
     </Container>
   );
 }
