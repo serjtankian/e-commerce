@@ -36,6 +36,13 @@ export const addGame = createAsyncThunk("ADD_NEW_GAME", (body) => {
     .then((r) => console.log(r.data));
 });
 
+export const byCategory = createAsyncThunk("BY_CATEGO", (categoName) => {
+  return axios
+    .get(`http://localhost:3001/api/search/category?selected=${categoName}`)
+    .then((r) => r.data);
+});
+
+
 const allGamesReducer = createReducer(
   { allGames: [], singleGame: {} },
   {
@@ -89,6 +96,9 @@ const allGamesReducer = createReducer(
     [addGame.rejected]: (state, action) => {
       message.error("Something went wrong, try again ;)");
     },
+    [byCategory.fulfilled]: (state, action)=> {
+      state.allGames = action.payload[0].videogames
+    }
   }
 );
 

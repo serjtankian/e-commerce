@@ -11,6 +11,7 @@ import Cart from './components/Cart';
 import AddProductForm from './components/AddProductForm';
 import EditGameForm from './components/EditGameForm';
 import PurchaseConfirm from './components/PurchaseConfirm';
+import OrdersHistory from './components/OrdersHistory';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/search/" component={ListOfProducts} />
         <Route exact path="/login" component={LoginContainer} />
         <Route exact path="/register" component={RegisterContainer} />
+        <Route exact path="/orders" component={OrdersHistory} />
         <Route exact path="/products/:id/" component={ProductDetail} />
 
         <Route exact path="/purchaseConfirm" component={PurchaseConfirm} />
@@ -31,8 +33,11 @@ function App() {
           component={AddProductForm}
         />
         <Route exact path="/videoGame/edit/:id" component={EditGameForm} />
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 5571425f4e96d7203ce03ccb4b1884da9caa70de
         <Redirect from="/" to="/home" />
       </Switch>
       <Footer />
