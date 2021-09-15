@@ -10,5 +10,4 @@ router.get("/", searchByNameDesc)
 //ruta = `/api/search/category?selected={categoryName}`
 router.get("/category", searchByCategory)
 
-
 module.exports = router;

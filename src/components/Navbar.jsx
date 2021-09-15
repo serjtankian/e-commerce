@@ -1,12 +1,10 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Nav, Container, Navbar } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import { logoutUser } from '../store/usersReducer';
-import AddButton from './AdminButtons/AddButton';
-
-
+import React from "react";
+import { Link } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Nav, Container, Navbar, NavDropdown } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutUser, userOrders } from "../store/usersReducer";
+import AddButton from "./AdminButtons/AddButton";
 
 export default function Naxvbar() {
   const user = useSelector((state) => state.users.loggedIn);
@@ -15,6 +13,7 @@ export default function Naxvbar() {
   const userStatus = user ? user.isAdmin : null;
   const cartId = useSelector((state) => state.cart.cartData.id);
 
+  console.log(user);
   return (
     <>
       <Navbar bg="primary" variant="dark">
@@ -56,7 +55,9 @@ export default function Naxvbar() {
                 </span>
               )}
             </Nav.Link>
-            {userStatus === "Admin" || userStatus === "SAdmin" ? <AddButton /> : null}
+            {userStatus === "Admin" || userStatus === "SAdmin" ? (
+              <AddButton />
+            ) : null}
             <Nav.Link>
               <Link
                 className="btn btn-outline-primary text-white text-decoration-none"
@@ -66,6 +67,30 @@ export default function Naxvbar() {
               </Link>
             </Nav.Link>
           </Nav>
+          
+            <NavDropdown
+              title={user ? `Hola ${user.name}` : null}
+              id="navbarScrollingDropdown"
+              style={{background: "white !important"}}
+            >
+              <NavDropdown.Item>
+                <Link
+                  to="/orders"
+                  onClick={() => {
+                    dispatch(userOrders(user.id));
+                  }}
+                >
+                  Orders history
+                </Link>
+              </NavDropdown.Item>
+              <NavDropdown.Item href="#action4">
+                Editar usuario
+              </NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="#action5">
+                Something else here
+              </NavDropdown.Item>
+            </NavDropdown>
         </Container>
       </Navbar>
     </>
