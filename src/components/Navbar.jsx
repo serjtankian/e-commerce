@@ -8,6 +8,7 @@ import AddButton from "./AdminButtons/AddButton";
 import SeeUsersButton from "./SadminButtons/SeeUsersButton.jsx";
 import "../index.css";
 import PendingOrdersButton from "./SadminButtons/PendingOrdersButton";
+import AddCatergory from "./AdminButtons/AddCaterory";
 
 export default function Naxvbar() {
   const user = useSelector((state) => state.users.loggedIn);
@@ -72,6 +73,9 @@ export default function Naxvbar() {
               </NavDropdown.Item>
               {userStatus === "Admin" || userStatus === "SAdmin" ? (
                 <AddButton />
+              ) : null}
+              {userStatus === "Admin" || userStatus === "SAdmin" ? (
+                <AddCatergory />
               ) : null}
               {userStatus === "SAdmin" ? <SeeUsersButton /> : null}
               {userStatus === "SAdmin" ? <PendingOrdersButton /> : null}
