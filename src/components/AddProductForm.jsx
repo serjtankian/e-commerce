@@ -3,6 +3,7 @@ import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import { addGame } from "../store/gamesReducer";
+import AnimatedTitles from './AnimatedTitles';
 
 export default function AddProductForm() {
   const [body, setBody] = useState({
@@ -80,7 +81,7 @@ export default function AddProductForm() {
     <div>
       <>
         <Container className="mr-3 margin-top">
-          <h1 className="text-center mt-3 mb-3">Product Info</h1>
+          <AnimatedTitles value="Product Info"></AnimatedTitles>
 
           <Row className="mt-3 mb-3">
             <Col></Col>

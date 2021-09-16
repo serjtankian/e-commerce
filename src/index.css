@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: "Roboto Mono", monospace;
 }
 
 code {
@@ -12,12 +13,16 @@ code {
     monospace;
 }
 
-.dropdown,
-.dropend,
-.dropstart,
-.dropup {
-  position: relative;
-  border-radius: 5px;
+.Centrar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Letra {
+  /*   color: red; */
+  margin-top: 12px;
+  /*   font-family: "Roboto Mono", monospace; */
 }
 
 .nav-link {

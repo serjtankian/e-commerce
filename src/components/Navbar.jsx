@@ -10,6 +10,7 @@ import "../index.css";
 import PendingOrdersButton from "./SadminButtons/PendingOrdersButton";
 import AddCatergory from "./AdminButtons/AddCaterory";
 
+
 export default function Naxvbar() {
   const user = useSelector((state) => state.users.loggedIn);
   const dispatch = useDispatch();
@@ -20,8 +21,16 @@ export default function Naxvbar() {
   console.log(user);
   return (
     <>
-      <Navbar bg="primary" id="navCss"variant="dark">
+      <Navbar bg="primary" id="navCss" variant="dark">
         <Container>
+          <Navbar.Brand href="#home">
+            <img
+              src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/c1c9ae6e-bf1f-417c-b9b6-80d425a3a207/ddgdagc-f75ecd4d-21b8-4cfb-a120-b0beda6a69d2.png/v1/fill/w_1280,h_1279,strp/steam_verde_by_brastertag_ddgdagc-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI3OSIsInBhdGgiOiJcL2ZcL2MxYzlhZTZlLWJmMWYtNDE3Yy1iOWI2LTgwZDQyNWEzYTIwN1wvZGRnZGFnYy1mNzVlY2Q0ZC0yMWI4LTRjZmItYTEyMC1iMGJlZGE2YTY5ZDIucG5nIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.9fKkRdt5qUwmFZWI8BEACDZuyDTX6g9aaK_7a-AqKdA"
+              width="30"
+              height="30"
+              className="d-inline-block align-top"
+            />
+          </Navbar.Brand>
           <Navbar.Brand>Steam Green</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link>
