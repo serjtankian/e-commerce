@@ -45,7 +45,7 @@ app.use(function (err, res) {
 });
 
 //app listen
-db.sync({ force: true }).then(() => {
+db.sync({ force: false }).then(() => {
   app.listen(serverConfig.port, () => {
     console.log("Serven listening on port " + serverConfig.port);
   });
