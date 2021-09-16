@@ -30,6 +30,7 @@ export default function NewCategory() {
                   <Form.Group className="mb-1">
                     <Form.Control
                       type="text"
+                      placeholder:
                       name="name"
                       value="name"
                       onChange={handleChange}
