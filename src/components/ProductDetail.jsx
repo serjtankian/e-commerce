@@ -8,11 +8,14 @@ import EditButton from './AdminButtons/EditButton';
 import DeleteButton from './AdminButtons/DeleteButton';
 
 import { message } from 'antd'
-import { postReview } from "../store/reviewReducer"
+import { postReview, getReview } from "../store/reviewReducer"
 
 function ProductDetail() {
   const game = useSelector((state) => state.games.singleGame);
   const user = useSelector((state) => state.users.loggedIn)
+  const reviews = useSelector((state) => state.reviews);
+
+
   const userId = user ? user.id : null;
   const userStatus = user ? user.isAdmin : null;
   let history = useHistory();
@@ -25,9 +28,11 @@ function ProductDetail() {
   const gameCategories = game.categories ? game.categories.map(catg => { return catg.name }) : null;
 
   const [reviewInput, setReviewInput] = React.useState('');
+  const [reviewRate, setReviewRate] = React.useState("")
 
   useEffect(() => {
     dispatch(getSingleGame(gameId))
+    dispatch(getReview(gameId))
   }, [dispatch, gameId]);
 
   const addGameToCart = (e) => {
@@ -40,10 +45,11 @@ function ProductDetail() {
       dispatch(addProductToCart({ gameId, userId }));
     }
   };
-
+  const gameName = game.name
   const addReviewToGame = (e) => {
     e.preventDefault()
-    dispatch(postReview({ gameId, userId, reviewInput, }))
+    console.log("rating", reviewRate)
+    dispatch(postReview({ gameName, gameId, userId, reviewInput, reviewRate }))
   }
 
   return (
@@ -79,7 +85,7 @@ function ProductDetail() {
                 <Col>
 
                   {userStatus === "Admin" || userStatus === "SAdmin" ? <EditButton gameId={gameId} /> : null}
-                  {userStatus === "Admin" || userStatus === "SAdmin" ? <DeleteButton gameId={gameId}/> : null}
+                  {userStatus === "Admin" || userStatus === "SAdmin" ? <DeleteButton gameId={gameId} /> : null}
                 </Col>
               </Row>
             </Card.Body>
@@ -92,7 +98,7 @@ function ProductDetail() {
         <Form onSubmit={addReviewToGame} >
           <Row>
             {/* rate */}
-            <Form.Select aria-label="Select game rating">
+            <Form.Select aria-label="Select game rating" onClick={(e) => setReviewRate(e.target.value)}>
               <option>Select rating:</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -120,12 +126,29 @@ function ProductDetail() {
       </Row>
         : null}
 
+      <Container>
+        <Row className="mt-3 mb-3">
+          <h2> Reviews from other customers:</h2>
+        </Row>
+        <Row className="mt-3 mb-3">
+          {console.log('reviews -->', reviews)}
 
-      <Row className="mt-3 mb-3">
-        <h2> Reviews from other customers:</h2>
 
-      </Row>
+          {/*  ---------MAP REVIEWS------ */}
+          <Card>
+            <Card.Header>NOMBRE JUEGO</Card.Header>
+            <Card.Body>
+              <blockquote className="blockquote mb-0">
+                <p>RATING</p>
+                <p>COMENTARIO
+                </p>
 
+              </blockquote>
+            </Card.Body>
+          </Card>
+        </Row>
+
+      </Container>
     </Container>
   );
 }

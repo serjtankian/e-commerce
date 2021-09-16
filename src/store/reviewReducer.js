@@ -4,20 +4,20 @@ import { message } from "antd";
 
 export const postReview = createAsyncThunk(
   "POST_REVIEW",
-  ({ gameName, gameId, userId, reviewInput, gameRating }) => {
+  ({ gameName, gameId, userId, reviewInput, reviewRate }) => {
     return axios
       .post(`http://localhost:3001/api/reviews/addreview/${gameId}/${userId}`, {
         videogameName: gameName,
         text: reviewInput,
-        rate: gameRating,
+        rate: reviewRate,
       })
       .then((r) => r.data);
   }
 );
 
-export const getReview = createAsyncThunk("GET_REVIEW", (videogameId) => {
+export const getReview = createAsyncThunk("GET_REVIEW", (gameId) => {
   return axios
-    .get(`http://localhost:3001/api/reviews/vgreviews/${videogameId}`)
+    .get(`http://localhost:3001/api/reviews/vgreviews/${gameId}`)
     .then((r) => r.data);
 });
 

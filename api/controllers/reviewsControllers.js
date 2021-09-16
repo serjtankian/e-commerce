@@ -15,6 +15,7 @@ const addReview = (req, res, next) => {
     defaults: req.body,
   })
     .then((review) => {
+      console.log("BACK REVIEW", review);
       review[0].setVideogame(req.params.vgId);
       review[0].save();
       res.status(202).send(review[0]);
