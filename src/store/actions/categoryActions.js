@@ -11,9 +11,26 @@ export const byCategory = createAsyncThunk("BY_CATEGO", (categoName) => {
     .then((r) => r.data);
 });
 
-export const newCategory = createAsyncThunk('NEW_CATEGO', (category)=> {
-  return axios.post('http://localhost:3001/api/categories/create', {
-    name: category
-  })
-  .then(r=> r.data)
-})
+export const newCategory = createAsyncThunk("NEW_CATEGO", (category) => {
+  console.log(category.name);
+  return axios
+    .post("http://localhost:3001/api/categories/create", {
+      name: category.name,
+    })
+    .then((r) => r.data);
+});
+
+export const editCategory = createAsyncThunk("EDIT_CATEGO", ({idCategory, input}) => {
+  return axios
+    .put(`http://localhost:3001/api/categories/edit/${idCategory}`, {
+      name: input,
+    })
+    .then((r) => r.data);
+});
+export const deleteCategory = createAsyncThunk("DELETE_CATEGO", (idCategory) => {
+  return axios
+    .delete(`http://localhost:3001/api/categories/delete/${idCategory}` )
+    .then((r) => r.data);
+});
+
+
