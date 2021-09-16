@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
 import { editGame } from "../store/gamesReducer";
 
 export default function EditGameForm() {
@@ -34,6 +35,7 @@ export default function EditGameForm() {
   });
 
   const dispatch = useDispatch();
+  const history = useHistory()
 
   const handleChange = (e) => {
     console.log(body.category);
@@ -89,6 +91,7 @@ export default function EditGameForm() {
     e.preventDefault();
     let gameId = id;
     dispatch(editGame({ gameId, body }));
+    setTimeout(() => history.push("/"), 2000)
   };
 
   return (

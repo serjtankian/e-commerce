@@ -134,6 +134,9 @@ const usersReducer = createReducer(initialState, {
   [editUser.fulfilled]: (state, action) => {
     message.success("Updated!");
   },
+  [editUser.pending]: (state, action) => {
+    message.loading("Got it! Give me some seconds", 5);
+  },
   [userOrders.fulfilled]: (state, action)=> {
     console.log('PAYLOAD DE ORDERS', action.payload);
     state.allOrders = action.payload
