@@ -5,8 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
- 
-
+  font-family: "Roboto Mono", monospace;
 }
 
 code {
@@ -14,16 +13,19 @@ code {
     monospace;
 }
 
-.dropdown,
-.dropend,
-.dropstart,
-.dropup {
-  position: relative;
-  border-radius: 5px;
+.Centrar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Letra {
+  /*   color: red; */
+  margin-top: 12px;
+  /*   font-family: "Roboto Mono", monospace; */
 }
 
 .nav-link {
-  
   display: block;
   padding: 0.5rem 1rem;
   color: white !important;
@@ -78,14 +80,15 @@ code {
   transition-duration: 0.5s;
 }
 
-.form-floating>.form-control, .form-floating>.form-select {
+.form-floating > .form-control,
+.form-floating > .form-select {
   margin-bottom: 15px;
-  background: rgba(255,255,255,0.3);
+  background: rgba(255, 255, 255, 0.3);
   height: calc(3.5rem + 2px);
   line-height: 1.25;
 }
 
-.form-select{
+.form-select {
   margin-bottom: 15px;
-  background: rgba(255,255,255,0.3) !important;
+  background: rgba(255, 255, 255, 0.3) !important;
 }

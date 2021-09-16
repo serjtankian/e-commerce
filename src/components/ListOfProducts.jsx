@@ -19,6 +19,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllGames, searchGames, byCategory } from "../store/gamesReducer";
 import { useHistory } from "react-router";
 import { getCategories } from "../store/actions/categoryActions";
+/* ASDDDDDDDDDDDDDDDDDDDD */
+import AnimatedTitles from './AnimatedTitles';
+/* ASDDDDDDDDDDDDDDDDDDDD */
 
 export default function ListOfProducts() {
   const games = useSelector((state) => state.games.allGames);
@@ -53,8 +56,9 @@ export default function ListOfProducts() {
 
   return (
     <>
-      <h1 className="text-center mt-3 mb-3">List of products</h1>
-      <Container>
+      <AnimatedTitles value="List of Games"></AnimatedTitles>
+      {/* <h1 className="text-center mt-3 mb-3">List of products</h1> */}
+      <Container >
         <Row>
           <Col className="mt-1 mb-1">
             <Form onSubmit={searchHandler}>

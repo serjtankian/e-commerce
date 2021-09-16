@@ -6,6 +6,10 @@ import { useHistory, useLocation } from 'react-router';
 import { addProductToCart } from '../store/cartReducer';
 import EditButton from './AdminButtons/EditButton';
 import DeleteButton from './AdminButtons/DeleteButton';
+/* ASDDDDDDDDDDDDDDDDDDDD */
+import AnimatedTitles from './AnimatedTitles';
+/* ASDDDDDDDDDDDDDDDDDDDD */
+import { Rating } from "@material-ui/core"
 
 import { message } from 'antd'
 import { postReview, getReview } from "../store/reviewReducer"
@@ -14,7 +18,7 @@ function ProductDetail() {
   const game = useSelector((state) => state.games.singleGame);
   const user = useSelector((state) => state.users.loggedIn)
   const reviews = useSelector((state) => state.reviews);
-
+  const reviewsParaMap = reviews.reviews
 
   const userId = user ? user.id : null;
   const userStatus = user ? user.isAdmin : null;
@@ -28,15 +32,21 @@ function ProductDetail() {
   const gameCategories = game.categories ? game.categories.map(catg => { return catg.name }) : null;
 
   const [reviewInput, setReviewInput] = React.useState('');
-  const [reviewRate, setReviewRate] = React.useState("")
+  const [reviewRate, setReviewRate] = React.useState(0)
+  let promedio = 0
+  promedio += reviewRate
+
 
   useEffect(() => {
     dispatch(getSingleGame(gameId))
     dispatch(getReview(gameId))
+    console.log('reviews -->', reviews.reviews)
   }, [dispatch, gameId]);
+
 
   const addGameToCart = (e) => {
     e.preventDefault();
+
     if (!user) {
       history.push('/login')
       message.warning("You need to be logged in!")
@@ -48,20 +58,21 @@ function ProductDetail() {
   const gameName = game.name
   const addReviewToGame = (e) => {
     e.preventDefault()
-    console.log("rating", reviewRate)
     dispatch(postReview({ gameName, gameId, userId, reviewInput, reviewRate }))
   }
 
   return (
-    <Container className="mt-3 mb-3">
+    <Container className=" mt-3 mb-3">
       <Row className="mt-3 mb-3">
-        <Col>
-          <h1 className="text-center ">{game.name}</h1>
+        <Col >
+          {/* <h1 className="text-center ">{game.name}</h1> */}
+          <AnimatedTitles value={game.name}></AnimatedTitles>
         </Col>
       </Row>
       <Row className="align-items-center">
-        <Col>
-          <Card className="" style={{ width: '38rem' }}>
+        <Col></Col>
+        <Col xs={6}>
+          <Card className="">
             <Card.Img variant="top" src={game.image} />
             <Card.Body>
               <Card.Title>{game.name}</Card.Title>
@@ -90,26 +101,34 @@ function ProductDetail() {
               </Row>
             </Card.Body>
           </Card>
+
         </Col>
+        <Col></Col>
       </Row>
-      {userId ? <Row className="mt-3 mb-3">
-        <h5>Add review:</h5>
+      {userId ? <Row className="mt-5 mb-5">
+        <h4>Add review:</h4>
 
         <Form onSubmit={addReviewToGame} >
           <Row>
-            {/* rate */}
-            <Form.Select aria-label="Select game rating" onClick={(e) => setReviewRate(e.target.value)}>
-              <option>Select rating:</option>
+            <h5>Select rating: </h5>
+            <Rating value={reviewRate} onClick={(e) => setReviewRate(e.target.value)} />
+            {/*  <Col><Form.Select aria-label="Select game rating" className="mt-1 mb-1" > */}
+
+            {/*    <option>Select rating:</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="4">4</option>
-              <option value="5">5</option>
-            </Form.Select>
+              <option value="5">5</option> */}
+            {/*  </Form.Select> */}
+            {/*     </Col> */}
+            <Col></Col>
+            <Col></Col>
           </Row>
-          {/* text comment */}
+
           <Row>
-            <FloatingLabel controlId="floatingTextarea2" label="Leave a comment here"  >
+
+            <FloatingLabel controlId="floatingTextarea2" label="Leave a comment here" className="mt-1 mb-1" >
               <Form.Control
                 as="textarea"
                 placeholder="Leave a comment here"
@@ -117,7 +136,7 @@ function ProductDetail() {
                 onChange={(e) => setReviewInput(e.target.value)}
               />
               <Button
-                className="justify-content-md-center"
+                className="justify-content-md-center mt-2 mb-2"
                 variant="primary"
                 type="submit">Submit</Button>
             </FloatingLabel>
@@ -131,25 +150,26 @@ function ProductDetail() {
           <h2> Reviews from other customers:</h2>
         </Row>
         <Row className="mt-3 mb-3">
-          {console.log('reviews -->', reviews)}
 
 
           {/*  ---------MAP REVIEWS------ */}
-          <Card>
-            <Card.Header>NOMBRE JUEGO</Card.Header>
-            <Card.Body>
-              <blockquote className="blockquote mb-0">
-                <p>RATING</p>
-                <p>COMENTARIO
-                </p>
+          {reviewsParaMap?.map((x, i) => (
+            <Row className="mb-1 mt-1">
+              <Card key={i}>
+                <Card.Header>Author: {x.user.name} </Card.Header>
+                <Card.Body>
+                  <blockquote className="blockquote mb-0">
+                    <h>Rating: <Rating name="read-only" value={x.rate} readOnly /></h>
+                    <p>Comments: {x.text}</p>
+                  </blockquote>
+                </Card.Body>
+              </Card>
+            </Row>))}
 
-              </blockquote>
-            </Card.Body>
-          </Card>
+          {/*  --------------------------------- */}
         </Row>
-
       </Container>
-    </Container>
+    </Container >
   );
 }
 
