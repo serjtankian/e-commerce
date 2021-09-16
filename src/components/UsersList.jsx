@@ -32,8 +32,8 @@ export default function UsersList() {
   return (
     <>
       {allUsers.length === 0 ? (
-        <Alert variant="success">
-          This is a alert—check it out!
+        <Alert style={{margin: 15}}variant="success">
+          No more users registered besides you!
         </Alert>
       ) : (
         allUsers &&

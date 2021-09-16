@@ -13,11 +13,10 @@ const getGameNames = (arrGames) => {
 const sendEmail = async (order, user, status) => {
   console.log(order.videogames);
   const transporter = nodemailer.createTransport({
-    host: "smtp.ethereal.email",
-    port: 587,
+    service: "Gmail",
     auth: {
-      user: "maxwell.barton74@ethereal.email",
-      pass: "SQw6GShE9QZaPYRwYC",
+      user: "steamVerdeok@gmail.com",
+      pass: "pepeperez",
     },
   });
   let emailText = `
@@ -30,7 +29,7 @@ const sendEmail = async (order, user, status) => {
         <p>Total: $ ${order.price} USD</p>
         `;
   return transporter.sendMail({
-    from: '"Steam Verde 👻" <steamVerde@ethereal.com>',
+    from: 'steamVerdeok@gmail.com',
     to: user.email,
     subject: "Order status and details ✔",
     html: emailText,

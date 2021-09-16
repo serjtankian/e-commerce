@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Accordion, Table, Row, Col, Button } from "react-bootstrap";
+import { Accordion, Table, Row, Col, Button, Alert } from "react-bootstrap";
 import {
   confirmOrder,
   getPendingOrders,
@@ -28,6 +28,11 @@ export default function () {
       <Row className="mt-3 mb-3">
         <Col></Col>
         <Col xs={8}>
+          {pendingOrders.length === 0 ? (
+            <Alert style={{ margin: 15 }} variant="success">
+              There is any pending order! Keep waiting!
+            </Alert>
+          ) : null}
           {pendingOrders?.map(({ id, date, status, price, videogames }) => (
             <Accordion defaultActiveKey="" flush>
               <Accordion.Item eventKey="0">

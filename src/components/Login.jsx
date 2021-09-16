@@ -58,6 +58,10 @@ function Login() {
               <Button variant="primary" type="submit" className="mt-3 mb-3">
                 Login
               </Button>
+              {/* <Button variant="primary" className="mt-3 mb-3" href="http://localhost:3001/api/users/loginFacebook"
+              >
+                Facebook
+              </Button> */}
               <p className="mt-1 mb-3">
                 Don't have an account?
                 <Link to={`/register`}> CLICK HERE </Link> to create a new one.

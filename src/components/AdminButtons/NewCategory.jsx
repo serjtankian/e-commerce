@@ -3,19 +3,13 @@ import { useDispatch } from 'react-redux'
 import { newCategory } from '../../store/actions/categoryActions'
 
 export default function NewCategory() {
-    const [category, setCategory] = useState('')
     const dispatch = useDispatch()
 
     const handleChange = (e)=> {
     const value = e.target.value
-    setCategory({ category: value })
+    dispatch(newCategory(value))
     }
-    
-    const handleSubmit = (e)=> {
-        e.preventDefault()
-        dispatch(newCategory(category))
-    }
-
+  
     return (
         <div>
         <>

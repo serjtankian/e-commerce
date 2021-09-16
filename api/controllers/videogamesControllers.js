@@ -69,7 +69,7 @@ const postProduct = (req, res, next) => {
           //setea la categoria al videojuego
           videoGame[0].addCategory(catg[0]);
           videoGame[0].save();
-          res.sendStatus(201);
+          res.end();
         });
       });
     })

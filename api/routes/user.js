@@ -12,6 +12,13 @@ const {
   allUsers,
 } = require("../controllers/usersControllers");
 
+router.get(
+  "/loginFacebook",
+  passport.authenticate("facebook", {
+    successRedirect: "/",
+  })
+);
+
 // Ruta para registro
 router.post("/register", register);
 

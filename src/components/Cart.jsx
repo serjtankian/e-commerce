@@ -52,7 +52,7 @@ function Cart() {
 
   return (
     <>
-      <div className="container">
+      <div className="container" style={{marginTop: 20, marginBottom: 20}}>
         <div>
           {/*-----------------MAP-------------------- */}
           {games ? (
