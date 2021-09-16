@@ -20,13 +20,13 @@ export default function Naxvbar() {
   console.log(user);
   return (
     <>
-      <Navbar bg="primary" variant="dark">
+      <Navbar bg="primary" id="navCss"variant="dark">
         <Container>
           <Navbar.Brand>Steam Green</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link>
               <Link
-                className="btn btn-outline-primary text-white text-decoration-none"
+                className="btn btn-outline-success text-white text-decoration-none"
                 to="/"
               >
                 Products
@@ -87,7 +87,7 @@ export default function Naxvbar() {
           ) : null}
           <Nav.Link>
             <Link
-              className="btn btn-outline-primary text-white text-decoration-none"
+              className="btn btn-outline-success text-white text-decoration-none"
               to={userId ? `/${userId}/${cartId}` : "/login"}
             >
               🛒

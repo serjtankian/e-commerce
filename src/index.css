@@ -5,6 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+ 
+
 }
 
 code {
@@ -21,6 +23,7 @@ code {
 }
 
 .nav-link {
+  
   display: block;
   padding: 0.5rem 1rem;
   color: white !important;
@@ -28,4 +31,61 @@ code {
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out;
 }
+.btn-primary {
+  color: #fff;
+  background-color: rgb(9 9 9 / 40%) !important;
+  border-color: transparent !important;
+}
 
+.btn-primary:hover {
+  color: #fff;
+  background-color: rgba(255, 252, 252, 0.2) !important;
+  border-color: transparent !important;
+}
+
+.btn-outline-success {
+  color: #0d6efd;
+  border-color: transparent !important;
+}
+
+#navCss {
+  background: rgb(83, 126, 109);
+  background: linear-gradient(
+    90deg,
+    rgba(83, 126, 109, 1) 0%,
+    rgba(0, 203, 108, 1) 50%,
+    rgba(42, 110, 81, 1) 100%
+  );
+  --bs-bg-opacity: 0;
+  box-shadow: 14px -14px 28px #082904, -14px 14px 28px #414640;
+
+  -moz-box-shadow: -2px 1px 25px 22px rgba(0, 0, 0, 0.75) inset;
+
+  -moz-box-shadow: 1px -15px 14px 0px rgba(0, 0, 0, 0.75) inset;
+
+  -moz-box-shadow: -2px 1px 25px 22px rgba(0, 0, 0, 0.75);
+}
+
+.card {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+.products:hover {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+  box-shadow: 0px 0px 15px 15px #00000094;
+  -webkit-box-shadow: 0px 0px 15px 15px #00000094;
+  transition-duration: 0.5s;
+}
+
+.form-floating>.form-control, .form-floating>.form-select {
+  margin-bottom: 15px;
+  background: rgba(255,255,255,0.3);
+  height: calc(3.5rem + 2px);
+  line-height: 1.25;
+}
+
+.form-select{
+  margin-bottom: 15px;
+  background: rgba(255,255,255,0.3) !important;
+}
