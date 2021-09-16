@@ -51,14 +51,12 @@ code {
 }
 
 #navCss {
-  background: rgb(83, 126, 109);
+  background: rgb(2, 24, 14);
   background: linear-gradient(
     90deg,
-    rgba(83, 126, 109, 1) 0%,
-    rgba(0, 203, 108, 1) 50%,
-    rgba(42, 110, 81, 1) 100%
+    rgba(2, 24, 14, 1) 23%,
+    rgba(71, 196, 96, 1) 100%
   );
-  --bs-bg-opacity: 0;
   box-shadow: 14px -14px 28px #082904, -14px 14px 28px #414640;
 
   -moz-box-shadow: -2px 1px 25px 22px rgba(0, 0, 0, 0.75) inset;
