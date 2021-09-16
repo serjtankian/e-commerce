@@ -29,7 +29,7 @@ const reviewReducer = createReducer(initialState, {
     // message.success("Review added to game", 1);
   },
   [getReview.fulfilled]: (state, action) => {
-    state = action.payload;
+    state.reviews = action.payload;
   },
 });
 

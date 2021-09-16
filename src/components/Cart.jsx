@@ -11,6 +11,7 @@ import {
 import { createOrder } from '../store/ordersReducer';
 import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
+import AnimatedTitles from './AnimatedTitles';
 
 function Cart() {
   const location = useLocation();
@@ -53,6 +54,7 @@ function Cart() {
   return (
     <>
       <div className="container">
+        <AnimatedTitles value="Your shopping cart"></AnimatedTitles>
         <div>
           {/*-----------------MAP-------------------- */}
           {games ? (
