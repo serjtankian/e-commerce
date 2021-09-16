@@ -113,7 +113,7 @@ export default function ListOfProducts() {
                       to={`/products/${game.id}`}
                       className="text-decoration-none text-black"
                     >
-                      <Card className="h-100">
+                      <Card className="h-100 products">
                         <Card.Img variant="top" src={game.image} />
                         <Card.Body>
                           <Card.Title>{game.name}</Card.Title>

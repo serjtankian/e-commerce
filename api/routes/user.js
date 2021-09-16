@@ -3,7 +3,6 @@ const router = express.Router();
 const passport = require("passport");
 
 const {
-  isSAdmin,
   register,
   login,
   logout,
@@ -12,6 +11,13 @@ const {
   deleteUser,
   allUsers,
 } = require("../controllers/usersControllers");
+
+router.get(
+  "/loginFacebook",
+  passport.authenticate("facebook", {
+    successRedirect: "/",
+  })
+);
 
 // Ruta para registro
 router.post("/register", register);
