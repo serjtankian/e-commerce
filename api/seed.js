@@ -5,7 +5,7 @@ let games = [
     name: "Grand Theft Auto V",
     released: "2013-09-17",
     image:
-      "https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg",
+      "https://s1.gaming-cdn.com/images/products/186/271x377/grand-theft-auto-v-pc-juego-rockstar-cover.jpg",
     rating: 4,
     platforms: ["Pc", "Playstation", "Xbox"],
     price: 25,
@@ -18,7 +18,7 @@ let games = [
     name: "The Witcher 3: Wild Hunt",
     released: "2015-05-18",
     image:
-      "https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg",
+      "https://s2.gaming-cdn.com/images/products/268/271x377/juego-gog-com-the-witcher-3-wild-hunt-cover.jpg",
     rating: 4,
     platforms: ["PlayStation", "PC", "Xbox", "Nintendo"],
     price: 40,
@@ -31,7 +31,7 @@ let games = [
     name: "Portal 2",
     released: "2011-04-18",
     image:
-      "https://media.rawg.io/media/games/328/3283617cb7d75d67257fc58339188742.jpg",
+      "https://www.instant-gaming.com/images/products/220/271x377/220.jpg",
     rating: 4,
     platforms: ["Pc", "PlayStation", "Xbox", "Linux", "Apple Macintosh"],
     price: 10,
@@ -44,7 +44,7 @@ let games = [
     name: "Tomb Raider (2013)",
     released: "2013-03-05",
     image:
-      "https://media.rawg.io/media/games/ad2/ad2ffdf80ba993654f31da045bc02456.jpg",
+      "https://s3.gaming-cdn.com/images/products/152/271x377/juego-steam-tomb-raider-cover.jpg",
     rating: 4,
     platforms: ["Pc", "Playstation", "Xbox"],
     price: 15,
@@ -58,7 +58,7 @@ let games = [
     name: "The Elder Scrolls V: Skyrim",
     released: "2011-11-11",
     image:
-      "https://media.rawg.io/media/games/7cf/7cfc9220b401b7a300e409e539c9afd5.jpg",
+      "https://s3.gaming-cdn.com/images/products/146/271x377/the-elder-scrolls-v-skyrim-pc-juego-steam-europe-cover.jpg",
     rating: 4,
     platforms: ["PlayStation", "Pc", "Xbox", "Nintendo"],
     price: 45,
@@ -72,7 +72,7 @@ let games = [
     name: "Left 4 Dead 2",
     released: "2009-11-17",
     image:
-      "https://media.rawg.io/media/games/d58/d588947d4286e7b5e0e12e1bea7d9844.jpg",
+      "https://s2.gaming-cdn.com/images/products/733/271x377/juego-steam-left-4-dead-2-cover.jpg",
     rating: 4,
     platforms: ["Pc", "Xbox"],
     price: 10,
@@ -85,7 +85,7 @@ let games = [
     name: "Counter-Strike: Global Offensive",
     released: "2012-08-21",
     image:
-      "https://media.rawg.io/media/games/736/73619bd336c894d6941d926bfd563946.jpg",
+      "https://s1.gaming-cdn.com/images/products/9459/271x377/counter-strike-global-offensive-pc-mac-juego-steam-cover.jpg",
     rating: 3,
     platforms: ["Pc", "PlayStation", "Xbox"],
     price: 15,
@@ -98,7 +98,7 @@ let games = [
     name: "Portal",
     released: "2007-10-09",
     image:
-      "https://media.rawg.io/media/games/7fa/7fa0b586293c5861ee32490e953a4996.jpg",
+      "https://s1.gaming-cdn.com/images/products/1158/271x377/juego-steam-portal-cover.jpg",
     rating: 4,
     platforms: ["PC", "PlayStation", "Xbox", "Android", "Linux"],
     price: 12,
@@ -111,7 +111,7 @@ let games = [
     name: "Borderlands 2",
     released: "2012-09-18",
     image:
-      "https://media.rawg.io/media/games/588/588c6bdff3d4baf66ec36b1c05b793bf.jpg",
+      "https://i.3djuegos.com/juegos/7860/borderlands_2/fotos/ficha/borderlands_2-2148566.jpg",
     rating: 4,
     platforms: ["Pc", "PlayStation", "Xbox", "Apple Macintosh"],
     price: 40,
@@ -124,7 +124,7 @@ let games = [
     name: "BioShock Infinite",
     released: "2013-03-26",
     image:
-      "https://media.rawg.io/media/games/fc1/fc1307a2774506b5bd65d7e8424664a7.jpg",
+      "https://http2.mlstatic.com/D_NQ_NP_971339-MCO45275240944_032021-O.jpg",
     rating: 4,
     platforms: ["Pc", "PlayStation", "Xbox", "Linux", "Nintendo"],
     price: 20,
@@ -137,7 +137,7 @@ let games = [
     name: "Life is Strange",
     released: "2015-01-29",
     image:
-      "https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg",
+      "https://i.3djuegos.com/juegos/11257/life_is_strange/fotos/ficha/life_is_strange-3561963.jpg",
     rating: 4,
     platforms: [
       "Pc",
@@ -158,7 +158,7 @@ let games = [
     name: "Red Dead Redemption 2",
     released: "2018-10-26",
     image:
-      "https://media.rawg.io/media/games/511/5118aff5091cb3efec399c808f8c598f.jpg",
+      "https://s1.gaming-cdn.com/images/products/5679/271x377/juego-rockstar-red-dead-redemption-2-standard-edition-cover.jpg",
     rating: 5,
     platforms: ["Pc", "PlayStation", "Xbox"],
     price: 60,
@@ -171,7 +171,7 @@ let games = [
     name: "BioShock",
     released: "2007-08-21",
     image:
-      "https://media.rawg.io/media/games/bc0/bc06a29ceac58652b684deefe7d56099.jpg",
+      "https://s3.gaming-cdn.com/images/products/8279/271x377/juego-steam-bioshock-remastered-cover.jpg",
     rating: 4,
     platforms: ["Pc", "PlayStation", "Xbox", "iOS", "Apple Macintosh"],
     price: 25,
@@ -184,7 +184,7 @@ let games = [
     name: "Half-Life 2",
     released: "2004-11-16",
     image:
-      "https://media.rawg.io/media/games/b8c/b8c243eaa0fbac8115e0cdccac3f91dc.jpg",
+      "https://www.instant-gaming.com/images/products/2284/271x377/2284.jpg",
     rating: 4,
     platforms: [
       "Pc",
@@ -205,7 +205,7 @@ let games = [
     name: "Limbo",
     released: "2010-07-21",
     image:
-      "https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg",
+      "https://s3.gaming-cdn.com/images/products/1292/271x377/limbo-pc-mac-juego-steam-cover.jpg",
     rating: 4,
     platforms: [
       "PC",
@@ -227,7 +227,7 @@ let games = [
     name: "Team Fortress 2",
     released: "2007-10-10",
     image:
-      "https://media.rawg.io/media/games/46d/46d98e6910fbc0706e2948a7cc9b10c5.jpg",
+      "https://media.vandal.net/m/6583/201217115526_1.jpg",
     rating: 3,
     platforms: ["PC", "Apple Macintosh", "Linux"],
     price: 20,
@@ -240,7 +240,7 @@ let games = [
     name: "DOOM (2016)",
     released: "2016-05-13",
     image:
-      "https://media.rawg.io/media/games/c4b/c4b0cab189e73432de3a250d8cf1c84e.jpg",
+      "https://s2.gaming-cdn.com/images/products/865/271x377/juego-steam-doom-cover.jpg",
     rating: 5,
     platforms: ["PC", "PlayStation", "Xbox", "Nintendo"],
     price: 20,
@@ -253,7 +253,7 @@ let games = [
     name: "Fallout 4",
     released: "2015-11-09",
     image:
-      "https://media.rawg.io/media/games/d82/d82990b9c67ba0d2d09d4e6fa88885a7.jpg",
+      "https://s3.gaming-cdn.com/images/products/755/271x377/juego-steam-fallout-4-cover.jpg",
     rating: 4,
     platforms: ["PC", "PlayStation", "Xbox"],
     price: 20,
@@ -266,7 +266,7 @@ let games = [
     name: "PAYDAY 2",
     released: "2013-08-13",
     image:
-      "https://media.rawg.io/media/games/73e/73eecb8909e0c39fb246f457b5d6cbbe.jpg",
+      "https://s2.gaming-cdn.com/images/products/223/271x377/juego-steam-payday-2-cover.jpg",
     rating: 4,
     platforms: ["PC", "Xbox", "Linux"],
     price: 10,
@@ -279,13 +279,65 @@ let games = [
     name: "Destiny 2",
     released: "2017-09-06",
     image:
-      "https://media.rawg.io/media/games/34b/34b1f1850a1c06fd971bc6ab3ac0ce0e.jpg",
+      "https://www.instant-gaming.com/images/products/7164/271x377/7164.jpg",
     rating: 4,
     platforms: ["PC", "PlayStation", "Xbox", "Web"],
     price: 60,
     description:
       "'Destiny 2' es la secuela de conocidísimo MMORPG de Activision y Bungie, el cual viene a dar continuación a los hechos ocurridos en su antecesor centrándose en la historia de los Guardianes, unos guerreros encargados de preservar el Universo de las amenazas que puedan suponer la destrucción más absoluta.",
     categories: ["Action", "Shooter"],
+    stock: 10,
+  },
+  {
+    name: "Life is Strange: True Colors",
+    released: "2021-09-09",
+    image:
+      "https://s2.gaming-cdn.com/images/products/8512/271x377/life-is-strange-true-colors-pc-juego-steam-cover.jpg",
+    rating: 4,
+    platforms: ["PC", "PlayStation", "Xbox"],
+    price: 42,
+    description:
+      "En este juego eres Alex Chen, de 21 años, una asiática-americana que acaba de dejar el sistema de hogares de acogida del estado. Su primera decisión es ponerse en contacto con su hermano Gabe, con quien ha perdido contacto durante los ocho años anteriores, cuando él creció ya fuera del sistema. Después de ese contacto inicial, Alex se dirige al pequeño pueblo de Haven Springs, para reencontrarse con él.",
+    categories: ["Action", "Adventure"],
+    stock: 10,
+  },
+  {
+    name: "Assassin's Creed III",
+    released: "2012-10-31",
+    image:
+      "https://s3.gaming-cdn.com/images/products/320/271x377/assassins-creed-iii-pc-juego-ubisoft-connect-cover.jpg",
+    rating: 4,
+    platforms: ["PC", "PlayStation", "Xbox"],
+    price: 23,
+    description:
+      "The American Colonies, 1775. It’s a time of civil unrest and political upheaval in the Americas. As a Native American assassin fights to protect his land and his people, he will ignite the flames of a young nation’s revolution. Assassin’s Creed® III takes you back to the American Revolutionary War, but not the one you’ve read about in history books...",
+    categories: ["Action", "Adventure"],
+    stock: 10,
+  },
+  {
+    name: "Resident Evil 4 Ultimate HD Edition",
+    released: "2014-02-27",
+    image:
+      "https://s2.gaming-cdn.com/images/products/757/271x377/juego-steam-resident-evil-4-ultimate-hd-edition-cover.jpg",
+    rating: 4,
+    platforms: ["PC", "PlayStation", "Xbox"],
+    price: 23,
+    description:
+      "en resident evil 4, al agente especial Leon S. Kennedy se le asigna la misión de rescatar a la hija del presidente de los EUA, que ha sido secuestrada. Tras llegar a una aldea rural europea, se enfrenta a nuevas amenazas que suponen retos totalmente diferentes de los clásicos enemigos zombis de pesados movimientos de las primeras entregas de esta serie. Leon lucha contra terroríficas criaturas nuevas infestadas con una nueva amenaza denominada «Las Plagas» y se enfrenta a una agresiva horda de enemigos que incluye aldeanos bajo control mental conectados a Los Iluminados, la misteriosa secta detrás del rapto.",
+    categories: ["Action", "Zombies", "Post-Apocaliptic"],
+    stock: 10,
+  },
+  {
+    name: "Beyond: Two Souls",
+    released: "2019-07-22",
+    image:
+      "https://s2.gaming-cdn.com/images/products/4288/271x377/juego-epic-games-beyond-two-souls-cover.jpg",
+    rating: 4,
+    platforms: ["PC", "PlayStation", "Xbox"],
+    price: 23,
+    description:
+      "Un singular thriller psicológico de acción con las actuaciones de las estrellas de Hollywood Ellen Page y Willem Dafoe, Beyond: Two Souls™ te llevará a un emocionante viaje por todo el mundo mientras encarnas la insólita vida de Jodie Holmes. Jodie es diferente, pues ha nacido conectada a una entidad misteriosa dotada de poderes ncreíbles. Tus acciones decidirán el destino de Jodie conforme enfrenta desafíos impresionantes, peligros y una pérdida desgarradora durante el viaje para descubrir la verdad sobre su identidad.",
+    categories: ["Action", "Adventure"],
     stock: 10,
   },
 ];

@@ -30,7 +30,7 @@ app.use(
 
 //localStrategy
 require("./config/localStrategy");
-require("./config/facebookStrategy")
+require("./config/facebookStrategy");
 
 //passportInit
 app.use(passport.initialize());
@@ -45,7 +45,7 @@ app.use(function (err, res) {
 });
 
 //app listen
-db.sync({ force: false }).then(() => {
+db.sync({ force: true }).then(() => {
   app.listen(serverConfig.port, () => {
     console.log("Serven listening on port " + serverConfig.port);
   });
