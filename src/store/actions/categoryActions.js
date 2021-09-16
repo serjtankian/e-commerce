@@ -10,3 +10,8 @@ export const byCategory = createAsyncThunk("BY_CATEGO", (categoName) => {
     .get(`http://localhost:3001/api/search/category?selected=${categoName}`)
     .then((r) => r.data);
 });
+
+export const newCategory = createAsyncThunk('NEW_CATEGO', (category)=> {
+  return axios.post('http://localhost:3001/api/categories/create')
+  .then(r=> r.data)
+})

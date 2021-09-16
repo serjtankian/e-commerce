@@ -3,7 +3,6 @@ const router = express.Router();
 const passport = require("passport");
 
 const {
-  isSAdmin,
   register,
   login,
   logout,
