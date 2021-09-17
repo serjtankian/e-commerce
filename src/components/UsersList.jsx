@@ -39,7 +39,6 @@ export default function UsersList() {
         allUsers &&
         allUsers.map((user) => (
           <Card bg="secondary" style={{ margin: 15, color: "white" }}>
-            {/* <Card.Header as="h5">Featured</Card.Header> */}
             <Card.Body>
               <Card.Title>{user.name}</Card.Title>
               <Card.Text>{user.email}</Card.Text>

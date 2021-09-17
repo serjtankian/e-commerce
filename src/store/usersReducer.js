@@ -12,7 +12,6 @@ export const loginUser = createAsyncThunk("LOGIN_USER", (user) => {
   return axios
     .post("http://localhost:3001/api/users/login", user)
     .then((response) => {
-      // console.log(response.data);
       return response.data;
     });
 });
@@ -21,7 +20,6 @@ export const logoutUser = createAsyncThunk("LOGOUT_USER", () => {
   return axios
     .post("http://localhost:3001/api/users/logout")
     .then((response) => {
-      // console.log(response.data);
       return response.data;
     });
 });
@@ -34,7 +32,7 @@ export const getUsers = createAsyncThunk("GET_USERS", (userId) => {
     });
 });
 
-export const editUser = createAsyncThunk("EDIT_ME", ({email, body}) => {
+export const editUser = createAsyncThunk("EDIT_ME", ({ email, body }) => {
   return axios
     .put(`http://localhost:3001/api/users/${email}`, body)
     .then((response) => {
@@ -70,15 +68,16 @@ export const deleteUser = createAsyncThunk("DELETE_USER", (userId) => {
     });
 });
 
-export const userOrders = createAsyncThunk('GET_ORDERS', (userId)=> {
-  return axios.get(`http://localhost:3001/api/orders/allFrom/${userId}`)
-  .then(r=> r.data)
-})
+export const userOrders = createAsyncThunk("GET_ORDERS", (userId) => {
+  return axios
+    .get(`http://localhost:3001/api/orders/allFrom/${userId}`)
+    .then((r) => r.data);
+});
 
 const initialState = {
   loggedIn: JSON.parse(localStorage.getItem("user")) || null,
   allUsers: [],
-  allOrders: []
+  allOrders: [],
 };
 
 const usersReducer = createReducer(initialState, {
@@ -89,7 +88,7 @@ const usersReducer = createReducer(initialState, {
   [registerUser.pending]: (state, action) => {
     message.loading("Estamos creando tu usuario, danos unos segundos...", 1);
   },
-  [registerUser.reject]: (state, action) => {
+  [registerUser.rejected]: (state, action) => {
     message.error("Hubo un error, no pudimos crear tu usuario", 3);
   },
   [loginUser.fulfilled]: (state, action) => {
@@ -137,10 +136,10 @@ const usersReducer = createReducer(initialState, {
   [editUser.pending]: (state, action) => {
     message.loading("Got it! Give me some seconds", 5);
   },
-  [userOrders.fulfilled]: (state, action)=> {
-    console.log('PAYLOAD DE ORDERS', action.payload);
-    state.allOrders = action.payload
-  }
+  [userOrders.fulfilled]: (state, action) => {
+    console.log("PAYLOAD DE ORDERS", action.payload);
+    state.allOrders = action.payload;
+  },
 });
 
 export default usersReducer;

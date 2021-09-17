@@ -11,7 +11,6 @@ const getGameNames = (arrGames) => {
 
 // configurar envio de email confirmando la compra
 const sendEmail = async (order, user, status) => {
-  console.log(order.videogames);
   const transporter = nodemailer.createTransport({
     service: "Gmail",
     auth: {

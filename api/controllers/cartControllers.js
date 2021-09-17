@@ -79,7 +79,6 @@ const addProductToCart = (req, res, next) => {
 
 const increaseProduct = async (req, res, next) => {
   const game = await VideoGames.findByPk(req.params.gameId);
-  console.log(game);
 
   if (game) {
     Cart.findOne({ where: { status: "open", userId: req.params.userId } }).then(
@@ -88,14 +87,11 @@ const increaseProduct = async (req, res, next) => {
           where: { cartId: cart.id, videogameId: req.params.gameId },
         })
           .then((cartVideoG) => {
-            console.log(cartVideoG);
             cartVideoG.amountOfGames++;
             cartVideoG.save();
-            console.log("despues de la suma", cartVideoG);
             cart.quantity++;
             cart.price += game.price;
             cart.save();
-            console.log("despues de la suma", cart);
             res.send(cartVideoG);
           })
           .catch(next);
@@ -116,14 +112,11 @@ const decreaseProduct = async (req, res, next) => {
           where: { cartId: cart.id, videogameId: req.params.gameId },
         })
           .then((cartVideoG) => {
-            console.log(cartVideoG);
             cartVideoG.amountOfGames--;
             cartVideoG.save();
-            console.log("despues de la resta", cartVideoG);
             cart.quantity--;
             cart.price -= game.price;
             cart.save();
-            console.log("despues de la resta", cart);
             res.send(cartVideoG);
           })
           .catch(next);

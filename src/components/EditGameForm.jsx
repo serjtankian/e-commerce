@@ -38,7 +38,6 @@ export default function EditGameForm() {
   const history = useHistory();
 
   const handleChange = (e) => {
-    console.log(body.category);
     switch (e.target.name) {
       case "name":
         setBody({ ...body, name: e.target.value });
@@ -191,15 +190,6 @@ export default function EditGameForm() {
                     onChange={handleChange}
                   />
                 </Form.Group>
-                {/* <Form.Group className="mb-1">
-                                    <Form.Control
-                                        type="text"
-                                        name="categories"
-                                        placeholder="categories"
-                                        value={body.category ? body.category.join(", "): null}
-                                        onChange={handleChange}
-                                    />
-                                </Form.Group> */}
 
                 <Form.Group
                   className="mb-3"

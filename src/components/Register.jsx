@@ -58,9 +58,6 @@ function Register() {
                 onChange={onChangeRegister}
               />
             </Form.Group>
-            {/* <Form.Group className="mb-1" controlId="formBasicPassword">
-              <Form.Control type="password" placeholder=" Confirm Password" />
-            </Form.Group> */}
             <Button variant="primary" type="submit" className="mt-3 mb-3">
               Create Account
             </Button>

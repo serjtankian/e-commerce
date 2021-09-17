@@ -12,7 +12,6 @@ export const byCategory = createAsyncThunk("BY_CATEGO", (categoName) => {
 });
 
 export const newCategory = createAsyncThunk("NEW_CATEGO", (category) => {
-  console.log(category.name);
   return axios
     .post("http://localhost:3001/api/categories/create", {
       name: category.name,
