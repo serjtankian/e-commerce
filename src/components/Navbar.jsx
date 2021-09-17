@@ -18,7 +18,6 @@ export default function Naxvbar() {
   const userStatus = user ? user.isAdmin : null;
   const cartId = useSelector((state) => state.cart.cartData.id);
 
-  console.log(user);
   return (
     <>
       <Navbar bg="primary" id="navCss" variant="dark">

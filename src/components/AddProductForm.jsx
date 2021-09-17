@@ -22,7 +22,6 @@ export default function AddProductForm() {
   const history = useHistory();
 
   const handleChange = (e) => {
-    console.log(body);
     switch (e.target.name) {
       case "name":
         setBody({ ...body, name: e.target.value });

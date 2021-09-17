@@ -4,7 +4,6 @@ import "../index.css";
 
 
 function AnimatedTitles(prop) {
-    console.log(prop)
     const [state, setState] = useState();
 
     const el = useCallback(node => {

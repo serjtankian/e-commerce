@@ -25,9 +25,7 @@ export default function UserEdit() {
         return;
       case "password":
         if (e.target.value === " " || e.target.value.length === 0) {
-          console.log("estoy en pass");
           delete body.password;
-          console.log(body);
           return;
         }
         setBody({ ...body, password: e.target.value });

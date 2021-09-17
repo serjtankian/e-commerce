@@ -9,14 +9,11 @@ import { message } from "antd";
 export const addProductToCart = createAsyncThunk(
   "ADD_PRODUCT_TO_CART",
   ({ gameId, userId }) => {
-    // const { cart } = thunkApi.getState();
-    // console.log('CART REDUCER : CART ', cart);
     return axios
       .post(`http://localhost:3001/api/cart/addCart/${gameId}/${userId}`, {
         quantity: 1,
       })
       .then((response) => {
-        // console.log('RESP DATA', response);
         return response.data;
       })
       .catch((e) => {
@@ -26,11 +23,9 @@ export const addProductToCart = createAsyncThunk(
 );
 
 export const cartView = createAsyncThunk("CART_VIEW", ({ cartId, userId }) => {
-  console.log("cartView", cartId, userId);
   return axios
     .get(`http://localhost:3001/api/cart/singleCart/${cartId}/${userId}`)
     .then((response) => {
-      // console.log('CART VIEW AXIO ', response.data);
       return response.data;
     })
     .catch((e) => {
@@ -46,7 +41,6 @@ export const deleteFromCart = createAsyncThunk(
         `http://localhost:3001/api/cart/deleteProduct/${gameId}/${userId}`
       )
       .then((response) => {
-        // console.log('CART VIEW AXIO ', response.data);
         return response.data;
       })
       .catch((e) => {
@@ -61,7 +55,6 @@ export const increaseProductCart = createAsyncThunk(
     return axios
       .put(`http://localhost:3001/api/cart/increaseProduct/${gameId}/${userId}`)
       .then((response) => {
-        // console.log('CART VIEW AXIO ', response.data);
         return response.data;
       })
       .catch((e) => {
@@ -76,7 +69,6 @@ export const decreaseProductCart = createAsyncThunk(
     return axios
       .put(`http://localhost:3001/api/cart/decreaseProduct/${gameId}/${userId}`)
       .then((response) => {
-        // console.log('CART VIEW AXIO ', response.data);
         return response.data;
       })
       .catch((e) => {
@@ -98,25 +90,20 @@ const cartReducer = createReducer(initialState, {
     message.success("Product added to cart", 1);
   },
   [cartView.fulfilled]: (state, action) => {
-    // console.log('payload view ', action.payload);
     state.singleCart = action.payload;
   },
   [deleteFromCart.fulfilled]: (state, action) => {
     state.cartData = action.payload;
-    /* message.success("Cart updated...", 3); */
   },
   [increaseProductCart.fulfilled]: (state, action) => {
     state.singleCart = action.payload;
-    /*     message.success("Cart updated...", 3); */
   },
   [decreaseProductCart.fulfilled]: (state, action) => {
     state.singleCart = action.payload;
-    /*     message.success("Cart updated...", 3); */
   },
   [clearCart]: (state, action) => {
     state.cartData = {};
     state.singleCart = {};
-    /*     message.success("Cart updated...", 3); */
   },
 });
 
