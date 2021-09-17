@@ -41,7 +41,7 @@ function ProductDetail() {
     dispatch(getSingleGame(gameId))
     dispatch(getReview(gameId))
     console.log('reviews -->', reviews.reviews)
-  }, [dispatch, gameId]);
+  }, [dispatch, gameId, reviews]);
 
 
   const addGameToCart = (e) => {

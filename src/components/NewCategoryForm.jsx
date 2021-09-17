@@ -21,32 +21,38 @@ export default function NewCategory() {
   const [selectCategory, setSelectCategory] = useState("Select Category");
   const [input, setInput] = useState("");
   const [idCategory, setIdCategory] = useState(0);
-  //const [disableToggle, setDisableToggle] = useState(true);
-  let disableToggle = false;
+  const [disableToggle, setDisableToggle] = useState(true);
+  const [reload, setReload] = useState(true);
+
   const categories = useSelector((state) => state.allcategories.categories);
-  console.log("CATEGORIAS", categories);
 
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
-    const value = e.target.value[0].toUpperCase() + e.target.value.slice(1).toLowerCase();
+    if (e.target.value.length < 2) return;
+    const value =
+      e.target.value[0].toUpperCase() + e.target.value.slice(1).toLowerCase();
     setCategory({ name: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(newCategory(category));
+    setTimeout(() => {
+      setReload(!reload);
+    }, 1000);
   };
 
   useEffect(() => {
     dispatch(getCategories());
-  }, [categories]);
+  }, [reload]);
 
   return (
     <div>
       <>
         <Container>
-          <Row className="mt-3 mb-3">
+          <Row className="mt-5 mb-3">
+            <h2 className="text-center mt-3 mb-3">Category Panel</h2>
             <Col></Col>
             <Col xs={6}>
               <InputGroup className="mb-3">
@@ -69,24 +75,44 @@ export default function NewCategory() {
                 <FormControl
                   disabled={disableToggle}
                   onChange={(e) => {
-                    setInput(e.target.value[0].toUpperCase() + e.target.value.slice(1).toLowerCase());
+                    if (e.target.value.length < 2) return;
+                    setInput(
+                      e.target.value[0].toUpperCase() +
+                        e.target.value.slice(1).toLowerCase()
+                    );
                   }}
                   aria-label="Text input with dropdown button"
                 />
                 {input ? (
                   <Button
                     onClick={() => {
+                      setTimeout(() => {
+                        setReload(!reload);
+                      }, 1000);
                       dispatch(editCategory({ idCategory, input }));
+                      setSelectCategory("Select Category");
                     }}
                   >
                     CONFIRMAR
                   </Button>
                 ) : (
-                  <Button onClick={() => (disableToggle = false)}>
+                  <Button
+                    onClick={() => {
+                      setDisableToggle(false);
+                    }}
+                  >
                     EDITAR
                   </Button>
                 )}{" "}
-                <Button onClick={() => {dispatch(deleteCategory(idCategory)); setSelectCategory("Select Category")}}>
+                <Button
+                  onClick={() => {
+                    setTimeout(() => {
+                      setReload(!reload);
+                    }, 1000);
+                    dispatch(deleteCategory(idCategory));
+                    setSelectCategory("Select Category");
+                  }}
+                >
                   BORRAR
                 </Button>
               </InputGroup>
@@ -94,14 +120,15 @@ export default function NewCategory() {
             <Col></Col>
           </Row>
         </Container>
-                  
+
         <Container className="mr-3 margin-top">
-          <h1 className="text-center mt-3 mb-3">Add Category</h1>
           <Row className="mt-3 mb-3">
             <Col></Col>
             <Col xs={6}>
               <Form onSubmit={handleSubmit}>
-                <Form.Label>Name</Form.Label>
+                <Form.Label style={{ fontWeight: "bold" }}>
+                  Add Category
+                </Form.Label>
                 <Form.Group className="mb-1">
                   <Form.Control
                     type="text"
