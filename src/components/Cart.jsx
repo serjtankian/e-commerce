@@ -50,15 +50,10 @@ function Cart() {
     dispatch(createOrder({ userId }));
     dispatch(clearCart());
   };
-
   return (
     <>
-<<<<<<< HEAD
       <div className="container">
         <AnimatedTitles value="Your shopping cart"></AnimatedTitles>
-=======
-      <div className="container" style={{marginTop: 20, marginBottom: 20}}>
->>>>>>> f3c5172afa302557e8228fff68cb15f3922db701
         <div>
           {/*-----------------MAP-------------------- */}
           {games ? (
