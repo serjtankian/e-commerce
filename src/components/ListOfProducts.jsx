@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
@@ -13,6 +13,7 @@ import {
   Card,
   CardGroup,
   Form,
+  NavDropdown,
 } from "react-bootstrap";
 // import games from './game.json';
 import { useDispatch, useSelector } from "react-redux";
@@ -24,6 +25,7 @@ import AnimatedTitles from './AnimatedTitles';
 /* ASDDDDDDDDDDDDDDDDDDDD */
 
 export default function ListOfProducts() {
+  const [selectCategory, setSelectCategory] = useState("Categories");
   const games = useSelector((state) => state.games.allGames);
   const categories = useSelector((state) => state.allcategories.categories);
   const dispatch = useDispatch();
@@ -50,8 +52,11 @@ export default function ListOfProducts() {
     newTitle = value;
     // console.log('VALUE INNET TEXT', event.target);
 
-    dispatch(byCategory(value));
-    history.push(`/search/${value}`);
+    if(value==="All Categories"){
+      history.push(`/`)
+    }else{ dispatch(byCategory(value));
+      history.push(`/search/${value}`);}
+    
   };
 
   return (
@@ -81,11 +86,15 @@ export default function ListOfProducts() {
           <Col md="auto mt-1 mb-1">
             <DropdownButton
               id="dropdown-basic-button"
-              title={newTitle ? newTitle : "Categories"}
+              title={selectCategory ? selectCategory : "Categories"}
               onSelect={dropDownHandler}
             >
+             <Dropdown.Item> All Categories</Dropdown.Item>
+              <NavDropdown.Divider />
               {categories?.map(({ id, name }) => (
-                <Dropdown.Item key={id}>{name}</Dropdown.Item>
+                <Dropdown.Item onClick={() => {
+                  setSelectCategory(name);
+                }} key={id}>{name}</Dropdown.Item>
                 //  <Link></Link>
               ))}
             </DropdownButton>
@@ -113,8 +122,8 @@ export default function ListOfProducts() {
                       to={`/products/${game.id}`}
                       className="text-decoration-none text-black"
                     >
-                      <Card className="h-100 products">
-                        <Card.Img variant="top" src={game.image} />
+                      <Card className="h-100 products" >
+                        <Card.Img variant="top" src={game.image}/>
                         <Card.Body>
                           <Card.Title>{game.name}</Card.Title>
                           <Card.Text>Released: {game.released}</Card.Text>
