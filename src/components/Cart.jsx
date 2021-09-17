@@ -1,28 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect, useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { useSelector, useDispatch } from "react-redux";
 import {
   cartView,
   deleteFromCart,
   increaseProductCart,
   decreaseProductCart,
   clearCart,
-} from '../store/cartReducer';
-import { createOrder } from '../store/ordersReducer';
-import { useLocation } from 'react-router';
-import { Link } from 'react-router-dom';
-import AnimatedTitles from './AnimatedTitles';
+} from "../store/cartReducer";
+import { createOrder } from "../store/ordersReducer";
+import { useLocation } from "react-router";
+import { Link } from "react-router-dom";
+import AnimatedTitles from "./AnimatedTitles";
 
 function Cart() {
   const location = useLocation();
-  const arrayLocation = location.pathname.split('/');
+  const arrayLocation = location.pathname.split("/");
   const cartD = useSelector((state) => state.cart.cartData);
   const singleCart = useSelector((state) => state.cart.singleCart);
   const user = useSelector((state) => state.users.loggedIn);
   const userId = user ? user.id : null;
 
   const dispatch = useDispatch();
-
 
   useEffect(() => {
     dispatch(cartView({ cartId: arrayLocation[2], userId: arrayLocation[1] }));
@@ -61,7 +60,7 @@ function Cart() {
             games.map((game, i) => {
               let gameId = game.id;
 
-              const amountGames = game['cart-videogames'].amountOfGames;
+              const amountGames = game["cart-videogames"].amountOfGames;
               const stockGames = game.stock;
 
               return (
@@ -92,7 +91,7 @@ function Cart() {
                               -
                             </button>
                             <button type="text" class="btn btn-primary">
-                              {game['cart-videogames'].amountOfGames}
+                              {game["cart-videogames"].amountOfGames}
                             </button>
 
                             <button
@@ -107,7 +106,7 @@ function Cart() {
 
                           <h6 className="card-text">
                             Subtotal: $
-                            {game.price * game['cart-videogames'].amountOfGames}
+                            {game.price * game["cart-videogames"].amountOfGames}
                             .-
                           </h6>
                           <button

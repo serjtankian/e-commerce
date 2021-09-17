@@ -31,6 +31,7 @@ app.use(
 //localStrategy
 require("./config/localStrategy");
 
+
 //passportInit
 app.use(passport.initialize());
 app.use(passport.session());
