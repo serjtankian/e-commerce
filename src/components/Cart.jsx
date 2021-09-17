@@ -49,7 +49,6 @@ function Cart() {
     dispatch(createOrder({ userId }));
     dispatch(clearCart());
   };
-
   return (
     <>
       <div className="container">
