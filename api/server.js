@@ -30,7 +30,7 @@ app.use(
 
 //localStrategy
 require("./config/localStrategy");
-require("./config/facebookStrategy");
+
 
 //passportInit
 app.use(passport.initialize());

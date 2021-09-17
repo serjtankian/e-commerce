@@ -153,8 +153,8 @@ function ProductDetail() {
 
 
           {/*  ---------MAP REVIEWS------ */}
-          {reviewsParaMap?.map((x, i) => (
-            <Row className="mb-1 mt-1">
+          {reviewsParaMap && reviewsParaMap.length ? reviewsParaMap.map((x, i) => {
+            return (<Row className="mb-1 mt-1">
               <Card key={i}>
                 <Card.Header>Author: {x.user.name} </Card.Header>
                 <Card.Body>
@@ -164,9 +164,8 @@ function ProductDetail() {
                   </blockquote>
                 </Card.Body>
               </Card>
-            </Row>))}
-
-          {/*  --------------------------------- */}
+            </Row>)
+          }) : ""}
         </Row>
       </Container>
     </Container >
